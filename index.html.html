@@ -20,6 +20,18 @@
             margin-right: auto;
             padding: 1rem;
         }
+        .btn {
+            @apply px-6 py-3 rounded-full font-semibold transition-transform duration-300;
+        }
+        .btn-primary {
+            @apply bg-blue-600 text-white hover:bg-blue-700 transform hover:scale-105;
+        }
+        .card {
+            @apply bg-zinc-800 p-8 rounded-2xl shadow-lg;
+        }
+        .section-title {
+            @apply text-4xl sm:text-5xl font-bold text-center mb-12 text-white;
+        }
         html {
             scroll-behavior: smooth;
         }
@@ -30,15 +42,15 @@
     <!-- Navegação (Barra de Menu) -->
     <header class="bg-zinc-900 sticky top-0 z-50 shadow-md">
         <nav class="container flex justify-between items-center py-4">
-            <a href="#" class="text-2xl font-bold text-white">Descentralize</a>
+            <a href="#" class="text-2xl font-bold text-white"></a>
             <div class="hidden md:flex space-x-6">
                 <a href="#sobre" class="text-zinc-400 hover:text-white transition-colors duration-300">Sobre</a>
                 <a href="#servicos" class="text-zinc-400 hover:text-white transition-colors duration-300">Serviços</a>
                 <a href="#contato" class="text-zinc-400 hover:text-white transition-colors duration-300">Contato</a>
             </div>
             <!-- Menu hamburguer para mobile -->
-            <button id="menu-btn" class="md:hidden text-zinc-400 focus:outline-none" aria-label="Abrir menu">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            <button id="menu-btn" class="md:hidden text-zinc-400 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
         <!-- Menu mobile -->
@@ -53,24 +65,25 @@
         <!-- Seção Principal (Hero) -->
         <section id="hero" class="bg-zinc-900 text-center py-20 md:py-32">
             <div class="container">
-                <!-- Removida a imagem de perfil -->
+                <!-- Imagem de perfil com a imagem fornecida pelo usuário -->
+                <img src="https://placehold.co/150x150/1F2937/FFFFFF?text=Bitcoin" alt="Sua foto de perfil" class="rounded-full w-36 h-36 mx-auto mb-6 border-4 border-blue-600 shadow-xl">
                 <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight text-white">
                     <span class="text-blue-500">DESCENTRALIZE</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto mb-8">
                     Consultoria em Web3, Criptomoedas e Empréstimos Descentralizados.
                 </p>
-                <a href="#contato" class="px-6 py-3 rounded-full font-semibold transition-transform duration-300 bg-blue-600 text-white hover:bg-blue-700 transform hover:scale-105">Entre em Contato</a>
+                <a href="#contato" class="btn btn-primary">Entre em Contato</a>
             </div>
         </section>
 
         <!-- Seção "Sobre Mim" -->
         <section id="sobre" class="py-20">
             <div class="container">
-                <h2 class="text-4xl sm:text-5xl font-bold text-center mb-12 text-white">Sobre Mim</h2>
-                <div class="bg-zinc-800 p-8 rounded-2xl shadow-lg max-w-4xl mx-auto">
+                <h2 class="section-title">Sobre Mim</h2>
+                <div class="card max-w-4xl mx-auto">
                     <p class="text-lg text-zinc-300 leading-relaxed">
-                        Sou um consultor apaixonado pelo universo Web3 e pelo potencial das finanças descentralizadas (DeFi). Minha missão é ajudar indivíduos e empresas a navegar nesse novo ecossistema, desmistificando conceitos e promovendo práticas seguras e eficientes para maximizar oportunidades e minimizar riscos.
+                        Sou um consultor apaixonado pelo universo Web3 e pelo potencial das finanças descentralizadas (DeFi). Minha missão é ajudar indivíduos e empresas a navegar nesse novo ecossistema, desde o entendimento de criptoativos e tokens não fungíveis (NFTs) até a implementação de estratégias de empréstimos e governança descentralizada. Acredito em um futuro financeiro mais aberto, transparente e acessível para todos, construído sobre a tecnologia blockchain.
                     </p>
                 </div>
             </div>
@@ -79,11 +92,12 @@
         <!-- Seção "Serviços" -->
         <section id="servicos" class="bg-zinc-900 py-20">
             <div class="container">
-                <h2 class="text-4xl sm:text-5xl font-bold text-center mb-12 text-white">Meus Serviços</h2>
+                <h2 class="section-title">Meus Serviços</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Cartão de Serviço 1 -->
-                    <div class="bg-zinc-800 p-8 rounded-2xl shadow-lg text-center">
+                    <div class="card text-center">
                         <div class="flex justify-center mb-4">
+                            <!-- Ícone de rede descentralizada (nós conectados) -->
                             <svg class="w-12 h-12 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="12" cy="5" r="3"></circle>
                                 <circle cx="19" cy="12" r="3"></circle>
@@ -99,17 +113,17 @@
                         <p class="text-zinc-400">Orientação sobre empréstimos descentralizados, staking, yield farming e outras estratégias DeFi.</p>
                     </div>
                     <!-- Cartão de Serviço 2 -->
-                    <div class="bg-zinc-800 p-8 rounded-2xl shadow-lg text-center">
+                    <div class="card text-center">
                         <div class="flex justify-center mb-4">
                             <svg class="w-12 h-12 text-blue-500" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2V7h2v9z"/>
                             </svg>
                         </div>
-                        <h3 class="text-xl font-bold mb-2 text-white">Auto-custódia &amp; Segurança</h3>
-                        <p class="text-zinc-400">Instruções completas sobre como manter suas chaves privadas seguras utilizando dispositivos físicos.</p>
+                        <h3 class="text-xl font-bold mb-2 text-white">Auto-custódia & Segurança</h3>
+                        <p class="text-zinc-400">Instruções completas sobre como manter suas chaves privadas seguras com o uso de um dispositivo fisico.</p>
                     </div>
                     <!-- Cartão de Serviço 3 -->
-                    <div class="bg-zinc-800 p-8 rounded-2xl shadow-lg text-center">
+                    <div class="card text-center">
                         <div class="flex justify-center mb-4">
                             <svg class="w-12 h-12 text-blue-500" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4 9h4v11H4zm6-5h4v16h-4zm6 9h4v7h-4z"/>
@@ -125,25 +139,25 @@
         <!-- Seção "Contato" -->
         <section id="contato" class="py-20">
             <div class="container">
-                <h2 class="text-4xl sm:text-5xl font-bold text-center mb-12 text-white">Contato</h2>
-                <div class="bg-zinc-800 p-8 rounded-2xl shadow-lg max-w-2xl mx-auto">
+                <h2 class="section-title">Contato</h2>
+                <div class="card max-w-2xl mx-auto">
                     <p class="text-lg text-zinc-300 text-center mb-6">
                         Vamos construir o futuro descentralizado juntos. Preencha o formulário abaixo ou me envie um e-mail.
                     </p>
-                    <form class="space-y-4" autocomplete="off">
+                    <form class="space-y-4">
                         <div>
                             <label for="name" class="block text-zinc-400 mb-2">Nome</label>
-                            <input type="text" id="name" name="name" class="w-full p-3 rounded-lg bg-zinc-700 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <input type="text" id="name" name="name" class="w-full p-3 rounded-lg bg-zinc-700 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                         <div>
                             <label for="email" class="block text-zinc-400 mb-2">E-mail</label>
-                            <input type="email" id="email" name="email" class="w-full p-3 rounded-lg bg-zinc-700 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <input type="email" id="email" name="email" class="w-full p-3 rounded-lg bg-zinc-700 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                         <div>
                             <label for="message" class="block text-zinc-400 mb-2">Mensagem</label>
-                            <textarea id="message" name="message" rows="4" class="w-full p-3 rounded-lg bg-zinc-700 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                            <textarea id="message" name="message" rows="4" class="w-full p-3 rounded-lg bg-zinc-700 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                         </div>
-                        <button type="submit" class="px-6 py-3 rounded-full font-semibold transition-transform duration-300 bg-blue-600 text-white hover:bg-blue-700 transform hover:scale-105 w-full">Enviar Mensagem</button>
+                        <button type="submit" class="btn btn-primary w-full">Enviar Mensagem</button>
                     </form>
                 </div>
             </div>
@@ -152,7 +166,7 @@
 
     <!-- Rodapé -->
     <footer class="bg-zinc-900 py-6 text-center text-zinc-500">
-        <p>&copy; 2024 Descentralize. Todos os direitos reservados.</p>
+        <p>&copy; 2024 Seu Nome. Todos os direitos reservados.</p>
     </footer>
 
     <!-- Script para navegação suave e menu mobile -->
@@ -162,5 +176,6 @@
             mobileMenu.classList.toggle('hidden');
         });
     </script>
+
 </body>
 </html>
