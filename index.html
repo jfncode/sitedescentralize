@@ -6,297 +6,34 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Finanças descentralizadas</title>
-        <!-- Favicon personalizado: ícone Web3/DeFi -->
-        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 110'%3E%3Ccircle cx='55' cy='20' r='12' stroke='%23ff9900' stroke-width='6' fill='%23181818'/%3E%3Ccircle cx='90' cy='55' r='12' stroke='%23ff9900' stroke-width='6' fill='%23181818'/%3E%3Ccircle cx='55' cy='90' r='12' stroke='%23ff9900' stroke-width='6' fill='%23181818'/%3E%3Ccircle cx='20' cy='55' r='12' stroke='%23ff9900' stroke-width='6' fill='%23181818'/%3E%3Cline x1='55' y1='32' x2='55' y2='78' stroke='%23ff9900' stroke-width='6'/%3E%3Cline x1='32' y1='55' x2='78' y2='55' stroke='%23ff9900' stroke-width='6'/%3E%3Cline x1='32.5' y1='32.5' x2='77.5' y2='77.5' stroke='%23ff9900' stroke-width='6'/%3E%3Cline x1='77.5' y1='32.5' x2='32.5' y2='77.5' stroke='%23ff9900' stroke-width='6'/%3E%3C/svg%3E">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: 'Inter', Arial, sans-serif;
-            background: #121212;
-            color: #E0E0E0;
-            min-height: 100vh;
-        }
-        #matrix {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            background: black;
-        }
-        .matrix-banner {
-            position: fixed;
-            top: 24px;
-            left: 32px;
-            z-index: 100;
-            padding: 18px 36px 14px 28px;
-            font-family: 'Share Tech Mono', 'Consolas', 'Courier New', monospace;
-            font-size: 2em;
-            font-weight: bold;
-            color: #ff9900;
-            text-shadow: 2px 2px 12px #000, 0 0 4px #ff9900;
-            letter-spacing: 3px;
-            user-select: none;
-            background: rgba(0,0,0,0.85);
-            border-bottom-right-radius: 22px;
-            border-top-left-radius: 8px;
-            box-shadow: 0 4px 24px #000a;
-            pointer-events: none;
-            transition: background 0.3s, color 0.3s;
-        }
-        @media (max-width: 600px) {
-            .matrix-banner {
-                font-size: 1.1em;
-                padding: 10px 16px 8px 12px;
-                left: 8px;
-                top: 8px;
-            }
-        }
-        .container {
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 1rem;
-            position: relative;
-            z-index: 2;
-        }
-        .card {
-            background: #181818 !important;
-            padding: 2rem;
-            border-radius: 1.25rem;
-            box-shadow: 0 2px 16px #000a;
-        }
-        .section-title {
-            font-size: 2.2em;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 0 #fff, 0 0 12px #fff;
-            letter-spacing: 2px;
-            font-weight: bold;
-            color: #ff9900;
-            margin-bottom: 18px;
-            text-align: center;
-        }
-        .section-text {
-            font-size: 1.25em;
-            text-transform: uppercase;
-            text-shadow: 1px 1px 0 #fff, 0 0 8px #fff;
-            color: #fff;
-            font-weight: 600;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .services-section {
-            margin-top: 0;
-        }
-        .services-matrix {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 24px;
-            margin-top: 24px;
-        }
-        .service-card {
-            background: rgba(20, 20, 20, 0.95);
-            border: 1.5px solid #ff9900;
-            border-radius: 10px;
-            box-shadow: 0 0 16px #ff990055;
-            width: 260px;
-            padding: 24px 18px 18px 18px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .service-card h3 {
-            color: #ff9900;
-            margin-bottom: 10px;
-            font-family: 'Share Tech Mono', monospace;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            text-shadow: 1px 1px 0 #fff, 0 0 8px #fff;
-            font-weight: bold;
-        }
-        .service-card p {
-            color: #fff;
-            font-size: 1em;
-            font-family: 'Share Tech Mono', monospace;
-            text-transform: uppercase;
-            text-shadow: 1px 1px 0 #fff, 0 0 8px #fff;
-            font-weight: 600;
-        }
-        .matrix-symbol {
-            color: #ff9900;
-            font-size: 2.2em;
-            position: absolute;
-            left: 12px;
-            top: 10px;
-            opacity: 0.25;
-            pointer-events: none;
-        }
-        @media (max-width: 900px) {
-            .services-matrix { flex-direction: column; align-items: center; }
-            .service-card { width: 95vw; max-width: 340px; }
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5em;
-            padding: 0.75em 2em;
-            border-radius: 999px;
-            font-weight: 600;
-            font-size: 1.1em;
-            background: #222;
-            color: #ff9900;
-            border: 1.5px solid #ff9900;
-            cursor: pointer;
-            transition: background 0.2s, color 0.2s;
-            margin-top: 1em;
-        }
-        .btn:hover {
-            background: #ff9900;
-            color: #181818;
-        }
-        .video-section iframe {
-            width: 100%;
-            height: 350px;
-            border: none;
-            border-radius: 8px;
-        }
-        @media (max-width: 800px) {
-            section { max-width: 98vw; padding: 18px 4vw; }
-            .video-section iframe { height: 200px; }
-        }
-    </style>
+    <title>Finanças descentralizadas</title>
+    <!-- Adicione aqui o restante do seu <head> -->
 </head>
 <body>
-    <canvas id="matrix"></canvas>
-    <div class="matrix-banner">SEJA SEU PRÓPRIO BANCO</div>
-    <header style="position:relative; z-index:2;">
-        <nav class="container" style="display:flex;justify-content:space-between;align-items:center;padding:1.5em 0;">
-            <!-- Removido o texto 'Descentralize' do menu/header -->
-            <button class="btn" id="login-google" style="
-                margin:0;
-                position:fixed;
-                right:3vw;
-                top:32px;
-                padding: 0.45em 1.2em;
-                font-size: 0.98em;
-                border-radius: 18px;
-                background: #181818;
-                color: #ff9900;
-                border: 1.5px solid #ff9900;
-                font-weight: 600;
-                z-index: 200;
-                box-shadow: 0 2px 12px #000a;
-                transition: background 0.2s, color 0.2s;
-            ">FAÇA LOGIN</button>
-        </nav>
-    </header>
-    <main>
-        <section id="hero" class="container" style="text-align:center; margin-top:2em;">
-            <span style="display:inline-flex;align-items:center;justify-content:center;width:140px;height:140px;margin-bottom:1.5em;border-radius:50%;border:4px solid #ff9900;box-shadow:0 0 24px #ff9900;background:#181818;">
-                <svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="55" cy="20" r="12" stroke="#ff9900" stroke-width="3" fill="#181818" />
-                    <circle cx="90" cy="55" r="12" stroke="#ff9900" stroke-width="3" fill="#181818" />
-                    <circle cx="55" cy="90" r="12" stroke="#ff9900" stroke-width="3" fill="#181818" />
-                    <circle cx="20" cy="55" r="12" stroke="#ff9900" stroke-width="3" fill="#181818" />
-                    <line x1="55" y1="32" x2="55" y2="78" stroke="#ff9900" stroke-width="3" />
-                    <line x1="32" y1="55" x2="78" y2="55" stroke="#ff9900" stroke-width="3" />
-                    <line x1="32.5" y1="32.5" x2="77.5" y2="77.5" stroke="#ff9900" stroke-width="3" />
-                    <line x1="77.5" y1="32.5" x2="32.5" y2="77.5" stroke="#ff9900" stroke-width="3" />
-                </svg>
-            </span>
-            <h1 class="section-title" style="margin-bottom:0.5em;color:#ff9900;">DESCENTRALIZE</h1>
-            <div id="user-info" style="display:none; text-align:center; margin-top:20px;"></div>
-        </section>
+    <!-- Adicione aqui o restante do seu HTML -->
 
-    <section id="contato" class="container" style="margin-top:4em;">
-            <h2 class="section-title">Contato</h2>
-            <div class="card max-w-2xl mx-auto">
-                <p class="section-text" style="text-align:center;font-size:0.98em;">Vamos construir o futuro descentralizado juntos. Preencha o formulário abaixo ou me envie um e-mail.</p>
-            </form>
-            <div id="msg-enviada" style="display:none;text-align:center;color:#00ff41;font-weight:bold;margin-top:1em;">Mensagem enviada com sucesso!</div>
-                <form class="space-y-4" style="margin-top:1em;">
-                    <div>
-                        <label for="name" style="color:#ff9900;">Nome</label>
-                        <input type="text" id="name" name="name" style="width:100%;padding:0.75em;border-radius:8px;background:#222;border:1px solid #ff9900;color:#fff;margin-top:0.5em;">
-                    </div>
-                    <div>
-                        <label for="email" style="color:#ff9900;">E-mail</label>
-                        <input type="email" id="email" name="email" style="width:100%;padding:0.75em;border-radius:8px;background:#222;border:1px solid #ff9900;color:#fff;margin-top:0.5em;">
-                    </div>
-                    <div>
-                        <label for="message" style="color:#ff9900;">Mensagem</label>
-                        <textarea id="message" name="message" rows="4" style="width:100%;padding:0.75em;border-radius:8px;background:#222;border:1px solid #ff9900;color:#fff;margin-top:0.5em;"></textarea>
-                    </div>
-                    <button type="submit" class="btn" style="width:100%;justify-content:center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="#ff9900" viewBox="0 0 20 20" width="22" height="22" style="margin-right:0.5em;"><path d="M2.94 2.94a1.5 1.5 0 0 1 1.6-.34l13.5 5.4a1.5 1.5 0 0 1 0 2.8l-13.5 5.4A1.5 1.5 0 0 1 2 15.5v-11A1.5 1.5 0 0 1 2.94 2.94zm1.06 1.06V15l13-5.2-13-5.2z"/></svg>
-                        Enviar Mensagem
-                    </button>
-                </form>
-            </div>
-        </section>
-    </main>
     <script>
     // Matrix background animation
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
-    let fontSize = 18;
-    let columns = Math.floor(width / fontSize);
-    let drops = Array(columns).fill(1);
-    function drawMatrix() {
-        ctx.fillStyle = 'rgba(0,0,0,0.08)';
-        ctx.fillRect(0, 0, width, height);
-        ctx.font = fontSize + 'px monospace';
-        ctx.fillStyle = '#ff9900';
-        for(let i = 0; i < drops.length; i++) {
-            let text = String.fromCharCode(0x30A0 + Math.random() * 96);
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-            if(drops[i] * fontSize > height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-            drops[i]++;
-        }
+    // ...código da animação...
+
+    // Firebase config do seu projeto
+    const firebaseConfig = {
+        apiKey: "AIzaSyCyLLJWtl7rEbqjdVLahVolXsKHiPOwE9U",
+        authDomain: "meusite-e6435.firebaseapp.com",
+        projectId: "meusite-e6435",
+        storageBucket: "meusite-e6435.firebasestorage.app",
+        messagingSenderId: "1026993453307",
+        appId: "1:1026993453307:web:e290076c7a8b3690ebd85e",
+        measurementId: "G-PBZMXYG7YJ"
+    };
+
+    // Inicializa o Firebase apenas se ainda não estiver inicializado
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
     }
-    setInterval(drawMatrix, 40);
-    window.addEventListener('resize', () => {
-        width = window.innerWidth;
-        height = window.innerHeight;
-        canvas.width = width;
-        canvas.height = height;
-        columns = Math.floor(width / fontSize);
-        drops = Array(columns).fill(1);
-    });
+    const db = firebase.firestore();
 
-        // Firebase config do seu projeto
-        const firebaseConfig = {
-            apiKey: "AIzaSyCyLLJWtl7rEbqjdVLahVolXsKHiPOwE9U",
-            authDomain: "meusite-e6435.firebaseapp.com",
-            projectId: "meusite-e6435",
-            storageBucket: "meusite-e6435.firebasestorage.app",
-            messagingSenderId: "1026993453307",
-            appId: "1:1026993453307:web:e290076c7a8b3690ebd85e",
-            measurementId: "G-PBZMXYG7YJ"
-        };
-
-        // Inicializa o Firebase apenas se ainda não estiver inicializado
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        }
-        const db = firebase.firestore();
-
-    // Login Google (Firebase) - só ativa se configurado
+    // Login Google (Firebase)
     const loginBtn = document.getElementById('login-google');
     if (loginBtn) {
         loginBtn.onclick = function() {
