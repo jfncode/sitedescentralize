@@ -281,22 +281,34 @@
 
         // Firebase config do seu projeto
         const firebaseConfig = {
-            apiKey: "AIzaSyBcovwGnB-KW3tzLnb08XXRZ7cJ-2VCRXg",
-            authDomain: "descentralize-67432.firebaseapp.com",
-            projectId: "descentralize-67432",
-            storageBucket: "descentralize-67432.firebasestorage.app",
-            messagingSenderId: "547030020919",
-            appId: "1:547030020919:web:745a860eab87ef9b2020b2",
-            measurementId: "G-LDX6XC0LRJ"
+            apiKey: "AIzaSyCyLLJWtl7rEbqjdVLahVolXsKHiPOwE9U",
+            authDomain: "meusite-e6435.firebaseapp.com",
+            projectId: "meusite-e6435",
+            storageBucket: "meusite-e6435.firebasestorage.app",
+            messagingSenderId: "1026993453307",
+            appId: "1:1026993453307:web:e290076c7a8b3690ebd85e",
+            measurementId: "G-PBZMXYG7YJ"
         };
-        firebase.initializeApp(firebaseConfig);
+
+        // Inicializa o Firebase apenas se ainda não estiver inicializado
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
         const db = firebase.firestore();
 
     // Login Google (Firebase) - só ativa se configurado
     const loginBtn = document.getElementById('login-google');
     if (loginBtn) {
         loginBtn.onclick = function() {
-            alert('Funcionalidade de login Google: configure o Firebase para ativar.');
+            const provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    alert('Bem-vindo, ' + user.displayName + '!');
+                })
+                .catch((error) => {
+                    alert('Erro no login: ' + error.message);
+                });
         };
     }
 
@@ -329,80 +341,5 @@
         });
     }
     </script>
-
-        <!-- Firebase App (core) SDK -->
-        <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-        <!-- Adicione outros SDKs do Firebase que desejar usar -->
-        <!-- <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js"></script> -->
-        <!-- <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script> -->
-        <!-- <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script> -->
-
-        <script>
-                            // Configuração do seu projeto Firebase
-                            const firebaseConfig = {
-                                apiKey: "AIzaSyCyLLJWtl7rEbqjdVLahVolXsKHiPOwE9U",
-                                authDomain: "meusite-e6435.firebaseapp.com",
-                                projectId: "meusite-e6435",
-                                storageBucket: "meusite-e6435.firebasestorage.app",
-                                messagingSenderId: "1026993453307",
-                                appId: "1:1026993453307:web:e290076c7a8b3690ebd85e",
-                                measurementId: "G-PBZMXYG7YJ"
-                            };
-
-                            // Inicializa o Firebase
-                            const app = firebase.initializeApp(firebaseConfig);
-                </script>
-
-                <!-- Firebase Auth SDK -->
-                <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
-                <script>
-                            // Função de login com Google
-                            function loginComGoogle() {
-                                const provider = new firebase.auth.GoogleAuthProvider();
-                                firebase.auth().signInWithPopup(provider)
-                                    .catch((error) => {
-                                        alert('Erro no login: ' + error.message);
-                                    });
-                            }
-
-                            // Função de logout
-                            function logout() {
-                                firebase.auth().signOut();
-                            }
-
-                            // Atualiza UI conforme status do usuário
-                            function atualizarUI(user) {
-                                const loginBtn = document.getElementById('login-google-btn');
-                                const userInfo = document.getElementById('user-info');
-                                const logoutBtn = document.getElementById('logout-btn');
-                                if (user) {
-                                    loginBtn.style.display = 'none';
-                                    userInfo.style.display = 'block';
-                                    userInfo.innerHTML = `
-                                        <img src="${user.photoURL}" alt="Foto de perfil" style="width:48px;height:48px;border-radius:50%;vertical-align:middle;margin-right:8px;">
-                                        <span style="font-weight:600;">${user.displayName}</span>
-                                    `;
-                                    logoutBtn.style.display = 'inline-block';
-                                } else {
-                                    loginBtn.style.display = 'inline-block';
-                                    userInfo.style.display = 'none';
-                                    logoutBtn.style.display = 'none';
-                                }
-                            }
-
-                            // Observador de autenticação
-                            firebase.auth().onAuthStateChanged(function(user) {
-                                atualizarUI(user);
-                            });
-                </script>
-
-                    <div style="text-align:center; margin: 2rem 0;">
-                        <button id="login-google-btn" onclick="loginComGoogle()" style="background:#4285F4;color:#fff;padding:12px 24px;border:none;border-radius:4px;font-size:1.1rem;cursor:pointer;">
-                            Entrar com Google
-                        </button>
-                        <span id="user-info" style="display:none;margin-left:16px;"></span>
-                        <button id="logout-btn" onclick="logout()" style="display:none;background:#e53e3e;color:#fff;padding:10px 18px;border:none;border-radius:4px;font-size:1rem;cursor:pointer;margin-left:16px;">Sair</button>
-                    </div>
-        </script>
 </body>
 </html>
