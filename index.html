@@ -7,105 +7,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finanças descentralizadas</title>
-    <!-- Adicione aqui o restante do seu <head> -->
     <style>
-      body { font-family: Arial, sans-serif; background: #111; color: #eee; }
+      body { font-family: Arial, sans-serif; background: #111; color: #eee; margin: 0; padding: 0; }
+      #matrix-canvas {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        z-index: -1;
+        background: #000;
+        display: block;
+      }
       #msg-enviada { background: #2ecc40; color: #fff; padding: 10px; margin-top: 10px; border-radius: 5px; display: none; }
       form { margin-top: 20px; }
       input, textarea { width: 100%; padding: 8px; margin: 5px 0; }
       button { padding: 10px 20px; background: #0074d9; color: #fff; border: none; border-radius: 3px; cursor: pointer; }
       button:hover { background: #005fa3; }
+      .container { position: relative; z-index: 1; max-width: 400px; margin: 60px auto 0 auto; background: rgba(16,16,16,0.92); border-radius: 10px; padding: 24px 24px 32px 24px; box-shadow: 0 0 24px #000a; }
+      h1 { text-align: center; }
     </style>
 </head>
 <body>
-    <h1>Finanças descentralizadas</h1>
+    <canvas id="matrix-canvas"></canvas>
+    <div class="container">
+      <h1>Finanças descentralizadas</h1>
+      <!-- Botão de login com Google -->
+      <button id="login-google">Entrar com Google</button>
 
-    <!-- Botão de login com Google -->
-    <button id="login-google">Entrar com Google</button>
-
-    <!-- Espaço para a animação Matrix (adicione seu canvas ou script aqui) -->
-    <div id="matrix-animation"></div>
-
-    <!-- Formulário de contato -->
-    <form>
-      <input id="name" type="text" placeholder="Seu nome" required>
-      <input id="email" type="email" placeholder="Seu email" required>
-      <textarea id="message" placeholder="Sua mensagem" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-    <div id="msg-enviada">Mensagem enviada com sucesso!</div>
-
-    <script>
-    // Exemplo de animação Matrix (remova se já tiver seu próprio script)
-    /*
-    const canvas = document.createElement('canvas');
-    canvas.width = window.innerWidth;
-    canvas.height = 200;
-    document.getElementById('matrix-animation').appendChild(canvas);
-    // ... seu código de animação aqui ...
-    */
-
-    // Configuração do Firebase
-    const firebaseConfig = {
-        apiKey: "AIzaSyCyLLJWtl7rEbqjdVLahVolXsKHiPOwE9U",
-        authDomain: "meusite-e6435.firebaseapp.com",
-        projectId: "meusite-e6435",
-        storageBucket: "meusite-e6435.appspot.com", // Corrigido
-        messagingSenderId: "1026993453307",
-        appId: "1:1026993453307:web:e290076c7a8b3690ebd85e",
-        measurementId: "G-PBZMXYG7YJ"
-    };
-
-    // Inicializa o Firebase apenas se ainda não estiver inicializado
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
-    const db = firebase.firestore();
-
-    // Login Google (Firebase)
-    const loginBtn = document.getElementById('login-google');
-    if (loginBtn) {
-        loginBtn.onclick = function() {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            firebase.auth().signInWithPopup(provider)
-                .then((result) => {
-                    const user = result.user;
-                    alert('Bem-vindo, ' + user.displayName + '!');
-                })
-                .catch((error) => {
-                    alert('Erro no login: ' + error.message);
-                });
-        };
-    }
-
-    // Envio do formulário de contato para o Firestore
-    const contactForm = document.querySelector('form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            try {
-                await db.collection('mensagens_contato').add({
-                    nome: name,
-                    email: email,
-                    mensagem: message,
-                    data: new Date()
-                });
-                contactForm.reset();
-                // Exibe mensagem de sucesso após o formulário
-                const msgEnviada = document.getElementById('msg-enviada');
-                if (msgEnviada) {
-                    msgEnviada.style.display = 'block';
-                    window.scrollTo({ top: msgEnviada.offsetTop - 100, behavior: 'smooth' });
-                    setTimeout(() => { msgEnviada.style.display = 'none'; }, 3500);
-                }
-            } catch (err) {
-                alert('Erro ao enviar mensagem: ' + err.message);
-            }
-        });
-    }
-    </script>
-</body>
-</html>
+      <!-- Formulário de contato -->
+      <form
+
