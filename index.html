@@ -8,20 +8,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finanças descentralizadas</title>
     <!-- Adicione aqui o restante do seu <head> -->
+    <style>
+      body { font-family: Arial, sans-serif; background: #111; color: #eee; }
+      #msg-enviada { background: #2ecc40; color: #fff; padding: 10px; margin-top: 10px; border-radius: 5px; display: none; }
+      form { margin-top: 20px; }
+      input, textarea { width: 100%; padding: 8px; margin: 5px 0; }
+      button { padding: 10px 20px; background: #0074d9; color: #fff; border: none; border-radius: 3px; cursor: pointer; }
+      button:hover { background: #005fa3; }
+    </style>
 </head>
 <body>
-    <!-- Adicione aqui o restante do seu HTML -->
+    <h1>Finanças descentralizadas</h1>
+
+    <!-- Botão de login com Google -->
+    <button id="login-google">Entrar com Google</button>
+
+    <!-- Espaço para a animação Matrix (adicione seu canvas ou script aqui) -->
+    <div id="matrix-animation"></div>
+
+    <!-- Formulário de contato -->
+    <form>
+      <input id="name" type="text" placeholder="Seu nome" required>
+      <input id="email" type="email" placeholder="Seu email" required>
+      <textarea id="message" placeholder="Sua mensagem" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="msg-enviada">Mensagem enviada com sucesso!</div>
 
     <script>
-    // Matrix background animation
-    // ...código da animação...
+    // Exemplo de animação Matrix (remova se já tiver seu próprio script)
+    /*
+    const canvas = document.createElement('canvas');
+    canvas.width = window.innerWidth;
+    canvas.height = 200;
+    document.getElementById('matrix-animation').appendChild(canvas);
+    // ... seu código de animação aqui ...
+    */
 
-    // Firebase config do seu projeto
+    // Configuração do Firebase
     const firebaseConfig = {
         apiKey: "AIzaSyCyLLJWtl7rEbqjdVLahVolXsKHiPOwE9U",
         authDomain: "meusite-e6435.firebaseapp.com",
         projectId: "meusite-e6435",
-        storageBucket: "meusite-e6435.firebasestorage.app",
+        storageBucket: "meusite-e6435.appspot.com", // Corrigido
         messagingSenderId: "1026993453307",
         appId: "1:1026993453307:web:e290076c7a8b3690ebd85e",
         measurementId: "G-PBZMXYG7YJ"
