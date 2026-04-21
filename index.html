@@ -823,6 +823,16 @@
                     </article>
 
                     <div class="posts-grid">
+                        <article class="post-card" data-post="aave-kelp-hack">
+                            <div class="post-thumb"><span class="post-thumb-icon">🚨</span></div>
+                            <div class="post-content">
+                                <div class="post-meta"><span class="post-category">Segurança</span><span>·</span><span>20/04/2026</span><span>·</span><span style="color:var(--accent);font-weight:600;">URGENTE</span></div>
+                                <h3>Hack de $292M na Kelp DAO congela rsETH na Aave</h3>
+                                <p>Maior exploit DeFi de 2026: bridge da Kelp é forjada, 116.500 rsETH saem sem lastro e atacante ataca Aave com eles. $6,2 bi de TVL evaporam em 24h.</p>
+                                <span class="post-readmore">ler análise</span>
+                            </div>
+                        </article>
+
                         <article class="post-card" data-post="liquid-staking">
                             <div class="post-thumb"><span class="post-thumb-icon">🔐</span></div>
                             <div class="post-content">
@@ -856,7 +866,7 @@
                         <article class="post-card" data-post="stablecoins-br">
                             <div class="post-thumb"><span class="post-thumb-icon">💵</span></div>
                             <div class="post-content">
-                                <div class="post-meta"><span class="post-category">Stablecoins</span><span>·</span><span>21/04/2026</span><span>·</span><span style="color:var(--accent);font-weight:600;">NOVO</span></div>
+                                <div class="post-meta"><span class="post-category">Stablecoins</span><span>·</span><span>21/04/2026</span></div>
                                 <h3>Stablecoins no Brasil: USDT vs USDC vs DAI</h3>
                                 <p>Comparativo técnico das principais stables, riscos de cada uma e qual escolher para dolarizar seu patrimônio.</p>
                                 <span class="post-readmore">ler artigo</span>
@@ -1097,6 +1107,245 @@
                         </div>
                     </article>
 
+                    <article class="article-full" id="post-aave-kelp-completo">
+                        <div class="post-meta">
+                            <span class="post-category">Segurança</span>
+                            <span>·</span>
+                            <span>20/04/2026</span>
+                            <span>·</span>
+                            <span>10 min de leitura</span>
+                        </div>
+                        <h2>Hack de $292M na Kelp DAO congela rsETH na Aave — anatomia do maior exploit DeFi de 2026</h2>
+                        <p>No fim de semana de <strong>18 a 20 de abril de 2026</strong>, a DeFi viveu o pior susto desde o colapso do Terra/Luna. Um atacante explorou a bridge da <strong>Kelp DAO</strong> (protocolo de <em>restaking</em> líquido em cima do EigenLayer), <strong>criou rsETH sem lastro</strong> e usou esses tokens como colateral na Aave para drenar aproximadamente <strong>$190 milhões em ETH emprestado</strong>. O prejuízo total chega a <strong>$292 milhões</strong>, fragmentados em mais de 20 cadeias.</p>
+                        <p>A Aave reagiu em horas congelando o mercado de rsETH — mas a desconfiança já estava instalada: <strong>$6,2 bilhões de TVL saíram do protocolo em 24 horas</strong>. Este artigo disseca o que aconteceu, por que aconteceu e o que isso significa para quem usa DeFi.</p>
+
+                        <h3>O vetor: bridge da Kelp DAO + LayerZero</h3>
+                        <p>A Kelp DAO permite que usuários depositem ETH (ou LSTs como stETH), recebendo em troca <code>rsETH</code> — um token que representa a posição em <em>restaking</em>. Para expandir multi-chain, a Kelp usa uma arquitetura de bridge baseada em LayerZero: o contrato valida uma mensagem "vi o token saindo da cadeia A" e então <strong>cunha um token equivalente na cadeia B</strong>.</p>
+                        <p>O problema: o atacante descobriu como <strong>forjar uma mensagem de transferência válida</strong> sem que o token jamais tivesse saído da cadeia de origem. A bridge, ao receber a mensagem forjada, cumpriu seu trabalho cegamente: <strong>cunhou 116.500 rsETH do lado Ethereum sem qualquer colateral real por trás</strong>.</p>
+
+                        <div class="adsense-slot inline">
+                            <div class="adsense-slot-label">[ espaço publicitário ]</div>
+                            <div class="adsense-slot-size">In-article — Responsive</div>
+                        </div>
+
+                        <h3>A escalada: Aave como alvo secundário</h3>
+                        <p>Aqui é onde o exploit ficou brilhante — e devastador. Em vez de vender os 116.500 rsETH fantasma no mercado aberto (o que derrubaria o preço e limitaria o ganho), o atacante fez o seguinte:</p>
+                        <ol>
+                            <li>Depositou <strong>89.567 rsETH como colateral na Aave</strong> (V3 em Ethereum, e também em Arbitrum).</li>
+                            <li>Usou esse colateral para <strong>pegar emprestado ~$190 milhões em ETH e ativos correlatos</strong>.</li>
+                            <li>Saiu com o empréstimo — deixando para a Aave o "problema" de um colateral sem lastro real.</li>
+                        </ol>
+                        <p>Em essência: <strong>o atacante transformou rsETH inflado em ETH líquido real</strong>, usando a Aave como lavanderia de valor. Se a rsETH perder o peg, quem fica com o prejuízo é o fundo de segurança (Safety Module) da Aave — não o atacante.</p>
+
+                        <h3>A resposta da Aave: congelamento em horas</h3>
+                        <p>O time de risco da Aave, junto com os <em>service providers</em> Llamarisk e Chaos Labs, agiu rápido:</p>
+                        <ul>
+                            <li><strong>Congelamento imediato</strong> dos mercados de rsETH na V3 e V4 em Ethereum e Arbitrum.</li>
+                            <li><strong>Loan-to-value (LTV) zerado</strong> — ninguém mais pode pegar emprestado contra rsETH.</li>
+                            <li><strong>Liquidation threshold reduzido</strong> para forçar liquidações ordenadas de posições legítimas.</li>
+                        </ul>
+                        <p>Stani Kulechov, fundador da Aave, enfatizou em comunicado oficial: <em>"O exploit foi externo. Os contratos da Aave não foram comprometidos. O risco está concentrado no mercado de rsETH, e ele está isolado."</em></p>
+
+                        <h3>O efeito cascata: $6,2 bi evaporam</h3>
+                        <p>Mesmo com os contratos intactos, a reação do mercado foi brutal. Entre a noite de sábado e a manhã de domingo (19/04), a Aave viu:</p>
+                        <ul>
+                            <li><strong>$6,2 bilhões em TVL sacados</strong> — usuários preferiram correr antes de confiar na explicação.</li>
+                            <li><strong>Pico de $300 milhões em empréstimos abertos</strong> em pouco tempo, criando <em>liquidity crunch</em>.</li>
+                            <li>Taxa de juros do ETH na Aave subindo momentaneamente para <strong>acima de 15% ao ano</strong> por escassez.</li>
+                            <li>Preço do token AAVE caindo ~18% em 48h.</li>
+                        </ul>
+                        <p>Outras bridges e protocolos de restaking (Renzo, EtherFi, Puffer) também sofreram saques preventivos — o mercado aprendeu a duras penas que <strong>risco de bridge + risco de restaking + risco de lending se multiplicam, não somam</strong>.</p>
+
+                        <div class="adsense-slot inline">
+                            <div class="adsense-slot-label">[ espaço publicitário ]</div>
+                            <div class="adsense-slot-size">In-article — Responsive</div>
+                        </div>
+
+                        <h3>O que o hack da Kelp ensina</h3>
+                        <p>Este não é um hack isolado — é o sintoma de três problemas estruturais que a DeFi ainda não resolveu:</p>
+
+                        <h3>1. Bridges continuam sendo o elo mais fraco</h3>
+                        <p>De Ronin ($625M, 2022) a Nomad ($190M, 2022), Wormhole ($325M, 2022) e agora Kelp DAO ($292M, 2026) — <strong>bridges cross-chain acumulam mais de $3 bilhões em prejuízos históricos</strong>. A mensagem é clara: mover valor entre cadeias ainda é fundamentalmente arriscado, e nenhuma arquitetura provou ser imune.</p>
+
+                        <h3>2. Colateral em DeFi é frágil a ataques de segunda ordem</h3>
+                        <p>A Aave não foi hackeada. Seus contratos funcionaram exatamente como deveriam. Mas ao aceitar rsETH como colateral, a Aave implicitamente <strong>confiou na segurança da bridge da Kelp</strong>. Quando a bridge falhou, o dano se transmitiu — e os depositantes da Aave viraram vítimas colaterais (literalmente).</p>
+
+                        <h3>3. Restaking empilha riscos invisíveis</h3>
+                        <p>O <em>restaking</em> (via EigenLayer e derivados) já era criticado por empilhar compromissos de capital: o mesmo ETH lastreia staking Ethereum + AVS de restaking + derivativos líquidos. Um erro em qualquer camada propaga para todas as outras. A Kelp materializou esse risco em <strong>menos de 72 horas</strong>.</p>
+
+                        <h3>O que fazer agora, na prática</h3>
+                        <ul>
+                            <li><strong>Se você tem rsETH:</strong> aguarde o comunicado oficial da Kelp DAO sobre plano de ressarcimento (se houver). Não tente vender em mercado fino — o preço já derreteu.</li>
+                            <li><strong>Se você deposita em Aave:</strong> revise se há exposição indireta a ativos congelados. ETH, USDC e DAI puros continuam seguros.</li>
+                            <li><strong>Se você usa liquid restaking em geral:</strong> considere reduzir exposição até que protocolos forneçam <em>post-mortem</em> técnico claro. Restaking puro (sem bridge multi-chain) tem risco menor.</li>
+                            <li><strong>Se você nunca mexeu:</strong> este é o lembrete número 1.000 de que <code>rendimento acima de 8% a.a. em cripto não é grátis</code> — é pagamento por assumir risco oculto.</li>
+                        </ul>
+
+                        <blockquote>"Todo protocolo DeFi suficientemente complexo contém um vetor de ataque que ninguém previu até ele ser explorado." — lei não escrita do setor, reafirmada a cada ciclo.</blockquote>
+
+                        <h3>Conclusão</h3>
+                        <p>O hack Kelp DAO + Aave é um divisor: a tese de que "<em>liquid restaking é o próximo trilhão</em>" sofreu um golpe técnico e reputacional duríssimo. A Aave provou resiliência no design — congelou, isolou, não quebrou —, mas a fuga de capital mostra que <strong>confiança leva anos para construir e 72 horas para virar pó</strong>.</p>
+                        <p>Para o investidor brasileiro, a lição é ainda mais dura: se você estava em rsETH via exchange local (Mercado Bitcoin, Foxbit listam LSTs/LRTs), a responsabilidade pelo prejuízo fica num limbo contratual que ainda vai gerar discussão jurídica. DeFi não tem CVM — e não tem SAC.</p>
+
+                        <div class="disclaimer-box">
+                            <strong>⚠ Aviso:</strong> conteúdo analítico e educacional com base em informações públicas (Aave Governance Forum, CoinDesk, CCN, post-mortem Llamarisk). Situação em desenvolvimento — dados podem mudar. Não constitui recomendação de investimento. DYOR.
+                        </div>
+                    </article>
+
+                    <article class="article-full" id="post-halving-completo">
+                        <div class="post-meta">
+                            <span class="post-category">Bitcoin</span>
+                            <span>·</span>
+                            <span>08/04/2026</span>
+                            <span>·</span>
+                            <span>8 min de leitura</span>
+                        </div>
+                        <h2>Bitcoin Halving 2028: o que esperar do próximo ciclo</h2>
+                        <p>O Bitcoin opera sob uma regra matemática inflexível: <strong>a cada 210.000 blocos (~4 anos), a recompensa por bloco é cortada pela metade</strong>. Esse evento, chamado <em>halving</em>, é o mecanismo que torna o BTC progressivamente mais escasso — e historicamente, o gatilho dos maiores ciclos de alta da história das criptomoedas.</p>
+                        <p>Em <strong>abril de 2028</strong>, o próximo halving reduzirá a emissão de 3,125 BTC por bloco para <strong>1,5625 BTC</strong>. Mas será que o padrão histórico vai se repetir? Ou este ciclo será estruturalmente diferente?</p>
+
+                        <h3>A mecânica: por que halving importa</h3>
+                        <p>O Bitcoin nasceu com recompensa de 50 BTC por bloco em 2009. Desde então:</p>
+                        <ul>
+                            <li><strong>Halving 1 (2012):</strong> 50 → 25 BTC/bloco. Preço antes: ~$12. Pico do ciclo (2013): ~$1.150. <strong>ROI: +9.483%</strong></li>
+                            <li><strong>Halving 2 (2016):</strong> 25 → 12,5 BTC/bloco. Preço antes: ~$650. Pico (2017): ~$19.700. <strong>ROI: +2.930%</strong></li>
+                            <li><strong>Halving 3 (2020):</strong> 12,5 → 6,25 BTC/bloco. Preço antes: ~$8.600. Pico (2021): ~$69.000. <strong>ROI: +702%</strong></li>
+                            <li><strong>Halving 4 (2024):</strong> 6,25 → 3,125 BTC/bloco. Preço antes: ~$63.000. Pico (até aqui, 2026): <strong>~$128.000+</strong>. ROI parcial: +103%</li>
+                        </ul>
+                        <p>Dois padrões saltam aos olhos: (1) o ROI por ciclo está <strong>decaindo proporcionalmente</strong>, e (2) o pico tende a ocorrer de <strong>12 a 18 meses após</strong> o halving.</p>
+
+                        <h3>Por que o choque de oferta funciona</h3>
+                        <p>A matemática é simples. Antes do halving 4, os mineradores vendiam ~900 BTC/dia ao mercado (6,25 × 144 blocos). Após o halving, <strong>passaram a vender ~450 BTC/dia</strong>. Se a demanda permanece constante, menos oferta = preço sobe. Se a demanda cresce (ETFs, adoção institucional), o efeito se amplifica.</p>
+                        <p>Em 2028, com recompensa em 1,5625 BTC, a emissão diária cairá para ~<strong>225 BTC/dia</strong> — metade da atual. A pressão de venda dos mineradores será a menor da história, em termos proporcionais.</p>
+
+                        <div class="adsense-slot inline">
+                            <div class="adsense-slot-label">[ espaço publicitário ]</div>
+                            <div class="adsense-slot-size">In-article — Responsive</div>
+                        </div>
+
+                        <h3>Por que 2028 pode ser diferente</h3>
+                        <p>Vários fatores estruturais mudaram desde 2020 — alguns favorecem um ciclo novo, outros sugerem retornos decrescentes:</p>
+
+                        <h3>Fatores pró-ciclo</h3>
+                        <ul>
+                            <li><strong>ETFs spot aprovados</strong> (EUA, Brasil, Europa) absorveram mais de 1 milhão de BTC entre 2024-2026. A demanda institucional tornou-se estrutural, não especulativa.</li>
+                            <li><strong>Adoção soberana crescente:</strong> El Salvador, Butão, e outros exploram BTC como reserva. Qualquer anúncio de país do G20 adicionando BTC à reserva muda a dinâmica de oferta.</li>
+                            <li><strong>Cap técnico se aproxima:</strong> em 2028 já teremos ~20,5 milhões de BTC minerados (de um total máximo de 21 milhões). A percepção de escassez extrema intensifica.</li>
+                        </ul>
+
+                        <h3>Fatores contra-ciclo</h3>
+                        <ul>
+                            <li><strong>Tamanho de mercado:</strong> com market cap de ~$2,5 trilhões (2026), mover o BTC 10x exige <strong>muito mais capital</strong> que em ciclos anteriores. É por isso que o ROI decai por ciclo.</li>
+                            <li><strong>Maturidade do derivativos:</strong> futuros, opções e ETFs permitem posições vendidas sofisticadas que não existiam em 2017. Isso amortece pumps excessivos.</li>
+                            <li><strong>Correlação com ações tech:</strong> desde 2022, BTC se comporta mais como ativo de risco global do que hedge contra fiat. Um <em>bear market</em> de ações pode arrastar BTC junto.</li>
+                            <li><strong>Mineração como negócio:</strong> com recompensa em 1,5625 BTC, mineradores dependem cada vez mais de <strong>taxas de transação</strong>. Se o volume on-chain não crescer, vários fecham operação — potencial pressão de venda.</li>
+                        </ul>
+
+                        <h3>Cenários para 2028-2029</h3>
+                        <p>Nenhuma projeção é garantia. Mas com base nos padrões históricos e ajustes estruturais:</p>
+                        <ul>
+                            <li><strong>Cenário conservador (ROI +80%):</strong> BTC atinge pico na faixa de <strong>$200-250 mil</strong> entre Q3/2029 e Q1/2030. Padrão de retornos decrescentes continua.</li>
+                            <li><strong>Cenário base (ROI +150%):</strong> BTC rompe <strong>$300 mil</strong>, impulsionado por um novo país soberano (ou estado dos EUA) adicionando BTC à reserva.</li>
+                            <li><strong>Cenário otimista (ROI +300%):</strong> BTC ultrapassa <strong>$500 mil</strong>, cenário de crise fiat grave (desvalorização do dólar, guerra cambial com CBDCs) + adoção corporativa de tesouraria explode.</li>
+                            <li><strong>Cenário pessimista:</strong> halving não reverte tendência baixista se cenário macro for de recessão profunda global. BTC pode testar <strong>$60-80 mil</strong> antes de retomar.</li>
+                        </ul>
+
+                        <h3>Estratégia prática: como se posicionar</h3>
+                        <p>A pior estratégia é tentar <em>timing</em> perfeito. A história mostra que <strong>DCA (compra periódica, quantia fixa) nos 18 meses anteriores ao halving</strong> supera 90% das tentativas ativas de comprar no fundo.</p>
+                        <ul>
+                            <li><strong>Janela de acúmulo ótima:</strong> outubro/2026 a abril/2028.</li>
+                            <li><strong>Janela de distribuição ótima:</strong> outubro/2029 a abril/2030 (baseado no padrão 12-18 meses pós-halving).</li>
+                            <li><strong>Alocação sugerida:</strong> nunca mais de 20-30% do patrimônio líquido em BTC. Rally <em>parabólico</em> também significa <em>drawdown</em> de 70-80% no bear market seguinte.</li>
+                        </ul>
+
+                        <blockquote>"O halving não faz o preço subir. Ele reduz a oferta futura. O que faz o preço subir é a demanda persistente encontrando oferta menor." — princípio elementar, esquecido em todo ciclo.</blockquote>
+
+                        <div class="disclaimer-box">
+                            <strong>⚠ Aviso:</strong> análise histórica e cenários prospectivos. Nada aqui é recomendação de investimento. Bitcoin pode cair 80% em bear markets — e já caiu. Nunca invista o que você não pode perder. DYOR.
+                        </div>
+                    </article>
+
+                    <article class="article-full" id="post-liquid-staking-completo">
+                        <div class="post-meta">
+                            <span class="post-category">DeFi</span>
+                            <span>·</span>
+                            <span>18/04/2026</span>
+                            <span>·</span>
+                            <span>8 min de leitura</span>
+                        </div>
+                        <h2>Liquid Staking: guia completo para iniciantes (e seus riscos ocultos)</h2>
+                        <p>Em 2020, fazer staking no Ethereum era um compromisso irreversível: você travava 32 ETH por tempo indeterminado, operava um validador 24/7 e perdia toda a liquidez do ativo. Hoje, com <strong>liquid staking</strong>, qualquer pessoa pode delegar ETH a um protocolo, receber um token representativo (<code>stETH</code>, <code>rETH</code>) e <strong>continuar usando esse token em toda a DeFi</strong> — trading, lending, collateralização — enquanto ele rende ~3-4% a.a.</p>
+                        <p>Parece mágico. E é — até não ser. Este guia explica o que é, como funciona, os principais players e, mais importante, <strong>os riscos que ninguém coloca no marketing do protocolo</strong>.</p>
+
+                        <h3>O que é staking (a versão curta)</h3>
+                        <p>Desde a fusão para Proof-of-Stake (2022), o Ethereum é validado por quem deposita ETH como garantia. Cada validador opera com <strong>32 ETH travados</strong> e, em troca de processar transações honestamente, recebe recompensas — atualmente entre <strong>2,8% e 4,2% ao ano</strong>, variando com a quantidade total em staking.</p>
+                        <p>O problema histórico: esse ETH ficava <em>preso</em>. Não podia ser vendido, usado como colateral, nem movimentado. Para quem tem posição longa, tudo bem. Para quem quer liquidez, é um fechamento de capital inaceitável.</p>
+
+                        <h3>A solução: derivativos líquidos de staking (LSTs)</h3>
+                        <p>Liquid staking resolve isso com uma abstração simples:</p>
+                        <ol>
+                            <li>Você deposita ETH no protocolo (Lido, Rocket Pool, etc).</li>
+                            <li>O protocolo agrupa seu ETH com o de milhares de outros usuários e opera validadores em escala.</li>
+                            <li>Em troca, você recebe um <strong>token representativo</strong> (stETH no Lido, rETH na Rocket Pool).</li>
+                            <li>Esse token é <strong>totalmente líquido</strong>: você pode vender, usar como colateral, mover entre chains.</li>
+                            <li>O token acumula valor (ou tem <em>rebase</em>) refletindo as recompensas do staking.</li>
+                        </ol>
+
+                        <h3>Os principais players em 2026</h3>
+                        <p><strong>Lido Finance (stETH)</strong><br>
+                        TVL: ~$28 bilhões. Líder absoluto, com mais de 30% de todo ETH em staking. Modelo <em>rebasing</em> — seu saldo de stETH cresce automaticamente.</p>
+                        <p><strong>Rocket Pool (rETH)</strong><br>
+                        TVL: ~$4 bilhões. Descentralização como proposta central — qualquer um pode operar um node (com 8 ETH + RPL colateral). Modelo <em>reward-bearing</em>: o preço do rETH sobe em relação ao ETH ao longo do tempo.</p>
+                        <p><strong>Coinbase (cbETH)</strong><br>
+                        TVL: ~$2,5 bilhões. Versão centralizada, ideal para quem não quer tocar em carteira própria. Custódia 100% no Coinbase — <em>defeats the purpose</em>, para puristas.</p>
+                        <p><strong>EtherFi, Puffer, Swell</strong><br>
+                        Entrantes focados em <em>restaking</em> nativo (integrados com EigenLayer). Rendimento potencialmente maior, risco empilhado substancialmente maior — como o hack da Kelp DAO em abril/2026 mostrou dolorosamente.</p>
+
+                        <div class="adsense-slot inline">
+                            <div class="adsense-slot-label">[ espaço publicitário ]</div>
+                            <div class="adsense-slot-size">In-article — Responsive</div>
+                        </div>
+
+                        <h3>Os riscos reais (que o marketing esconde)</h3>
+                        <p>Liquid staking não é "grátis". Os ~3-4% ao ano pagam você por assumir riscos concretos:</p>
+
+                        <h3>1. Risco de smart contract</h3>
+                        <p>O protocolo é um conjunto de contratos complexos. Um bug = perda total do colateral. Lido e Rocket Pool passaram por auditorias extensas e anos de <em>battle test</em>, mas "<em>never audited</em>" não existe em DeFi — existe "<em>ainda não explorado</em>".</p>
+
+                        <h3>2. Risco de slashing</h3>
+                        <p>Validadores podem ser <strong>punidos pela rede Ethereum</strong> (slashing) por má-conduta: dupla assinatura, downtime prolongado. A perda, embora pequena (0,5-1% por evento), é repassada proporcionalmente aos holders do token.</p>
+
+                        <h3>3. Risco de depeg (desvio do peg)</h3>
+                        <p>stETH e rETH deveriam valer ~1 ETH. Na prática, em momentos de estresse (colapso do 3AC em 2022, corrida bancária no Silicon Valley Bank em 2023), stETH já caiu para <strong>0,93 ETH</strong>. Se você precisar vender no fundo, leva prejuízo real.</p>
+
+                        <h3>4. Risco de centralização</h3>
+                        <p>O Lido sozinho controla ~30% do stake da rede. Pesquisadores (incluindo Vitalik Buterin) alertam que <strong>se um único LST passar de 33%, ele pode comprometer a segurança do Ethereum</strong>. Isso vira risco sistêmico — e aspectos regulatórios ficam imprevisíveis.</p>
+
+                        <h3>5. Risco de restaking empilhado</h3>
+                        <p>LSTs viraram a base de uma pirâmide: você pega stETH, deposita em EigenLayer (restaking), recebe outro token (rsETH, weETH), deposita esse em lending (Aave), pega empréstimo, compra mais ETH e reafirma. <strong>O risco não se divide — ele se multiplica</strong>. Foi isso que derreteu $6,2 bi de TVL da Aave em 72 horas em abril/2026.</p>
+
+                        <h3>6. Risco regulatório</h3>
+                        <p>A SEC (EUA) já insinuou que stETH pode ser classificado como security. No Brasil, a CVM ainda não se posicionou, mas qualquer mudança internacional tem efeito cascata. Um framework regulatório desfavorável pode forçar exchanges a deslistar LSTs — destruindo liquidez da noite para o dia.</p>
+
+                        <h3>Staking puro vs Liquid staking: quando escolher cada um</h3>
+                        <ul>
+                            <li><strong>Staking solo (rodar validador):</strong> para quem tem 32 ETH e expertise técnica. Zero risco de contrato terceiro, máximo rendimento líquido. Exige hardware 24/7.</li>
+                            <li><strong>Liquid staking (Lido/Rocket):</strong> para quem quer simplicidade + liquidez. Aceita risco de smart contract e centralização em troca disso.</li>
+                            <li><strong>Coinbase/custodial:</strong> para quem não confia em carteira própria e aceita KYC. Rendimento menor após taxas; contraparte é exchange centralizada.</li>
+                            <li><strong>Liquid restaking (EigenLayer, Kelp, EtherFi):</strong> <span style="color:var(--accent);font-weight:600;">só para quem entende cada camada de risco empilhada</span>. Rendimento extra paga por risco não-linear.</li>
+                        </ul>
+
+                        <h3>Conclusão prática</h3>
+                        <p>Liquid staking é uma das <strong>inovações mais elegantes da DeFi moderna</strong> — e também uma das mais seduzentes. Os 3-4% a.a. parecem modestos, mas em ETH valorizando 50-100% por ciclo, viram números relevantes.</p>
+                        <p>O erro clássico é tratar LST como "ETH que rende". <strong>É ETH + um conjunto de riscos específicos</strong>. Se você entende e aceita esses riscos, é uma ferramenta legítima de portfólio. Se você está nela só porque influenciador prometeu 8% com restaking, você está apostando em alavancagem oculta.</p>
+
+                        <blockquote>"O rendimento não vem do ar. Alguém está pagando — e, na DeFi, frequentemente é a futura versão de você mesmo, que vai descobrir o risco quando ele se materializar." — princípio cripto útil.</blockquote>
+
+                        <div class="disclaimer-box">
+                            <strong>⚠ Aviso:</strong> conteúdo educacional. Liquid staking envolve riscos reais de smart contract, slashing, depeg e regulatório. Nunca aloque mais do que pode perder. DYOR.
+                        </div>
+                    </article>
+
                 </div>
 
                 <aside class="sidebar">
@@ -1135,11 +1384,13 @@
                     <div class="widget">
                         <h4>Posts Populares</h4>
                         <ul>
+                            <li><a href="#post-aave-kelp-completo">🚨 Hack Kelp DAO + Aave ($292M)</a></li>
                             <li><a href="#post-stablecoins-completo">Stablecoins: USDT vs USDC vs DAI</a></li>
-                            <li><a href="#post-defi-brasil">Como DeFi está redesenhando o Brasil</a></li>
+                            <li><a href="#post-halving-completo">Bitcoin Halving 2028</a></li>
+                            <li><a href="#post-liquid-staking-completo">Liquid Staking: guia completo</a></li>
+                            <li><a href="#post-defi-brasil">DeFi redesenhando o Brasil</a></li>
                             <li><a href="#post-ir-completo">Declaração IR 2026 cripto</a></li>
                             <li><a href="#post-seguranca-completo">7 erros de segurança cripto</a></li>
-                            <li><a href="#blog">Bitcoin Halving 2028</a></li>
                         </ul>
                     </div>
 
@@ -1450,6 +1701,9 @@
                 if (target === 'seguranca') document.getElementById('post-seguranca-completo').scrollIntoView({behavior:'smooth'});
                 else if (target === 'ir-cripto') document.getElementById('post-ir-completo').scrollIntoView({behavior:'smooth'});
                 else if (target === 'stablecoins-br') document.getElementById('post-stablecoins-completo').scrollIntoView({behavior:'smooth'});
+                else if (target === 'aave-kelp-hack') document.getElementById('post-aave-kelp-completo').scrollIntoView({behavior:'smooth'});
+                else if (target === 'halving') document.getElementById('post-halving-completo').scrollIntoView({behavior:'smooth'});
+                else if (target === 'liquid-staking') document.getElementById('post-liquid-staking-completo').scrollIntoView({behavior:'smooth'});
                 else alert('// em breve: artigo completo em produção');
             });
         });
