@@ -796,19 +796,18 @@
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .nav-search { display: none; }
         }
+        @media (max-width: 760px) {
+            .nav-legal { display: none; }
+        }
         @media (max-width: 640px) {
             body { padding-top: 82px; }
             .menu {
                 display: flex;
                 flex-direction: row;
                 gap: 2px;
-                overflow-x: auto;
-                scrollbar-width: none;
-                -ms-overflow-style: none;
-                flex: 1;
                 justify-content: flex-end;
+                flex-wrap: nowrap;
             }
-            .menu::-webkit-scrollbar { display: none; }
             .menu a {
                 font-size: 0.72rem;
                 padding: 6px 8px;
@@ -824,7 +823,7 @@
             .article-full { padding: 22px; }
         }
         @media (max-width: 380px) {
-            .menu a { font-size: 0.68rem; padding: 6px 6px; }
+            .menu a { font-size: 0.68rem; padding: 6px 4px; }
             .logo { font-size: 0.78rem; }
         }
 
@@ -917,9 +916,9 @@
                 <li><a href="#blog" class="nav-link">Blog</a></li>
                 <li><a href="#ferramentas" class="nav-link">Ferramentas</a></li>
                 <li><a href="#sobre" class="nav-link">Sobre</a></li>
-                <li><a href="#contato" class="nav-link">Contato</a></li>
-                <li><a href="#privacidade" class="nav-link">Privacidade</a></li>
-                <li><a href="#termos" class="nav-link">Termos</a></li>
+                <li class="nav-legal"><a href="#contato" class="nav-link">Contato</a></li>
+                <li class="nav-legal"><a href="#privacidade" class="nav-link">Privacidade</a></li>
+                <li class="nav-legal"><a href="#termos" class="nav-link">Termos</a></li>
             </ul>
             <input type="search" class="nav-search" placeholder="// buscar..." id="searchBox">
             <button class="menu-toggle" id="menuToggle">[ &equiv; ]</button>
