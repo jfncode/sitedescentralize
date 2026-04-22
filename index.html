@@ -1029,10 +1029,20 @@
                             </div>
                         </article>
 
+                        <article class="post-card" data-post="metamask-passo">
+                            <div class="post-thumb"><span class="post-thumb-icon">🦊</span></div>
+                            <div class="post-content">
+                                <div class="post-meta"><span class="post-category">Iniciantes</span><span>·</span><span>22/04/2026</span><span>·</span><span style="color:var(--accent);font-weight:600;">NOVO</span></div>
+                                <h3>MetaMask passo-a-passo: sua primeira carteira hot</h3>
+                                <p>Instalação, configuração, redes (ETH, Arbitrum, Base, Optimism), conexão com dApps, integração com Ledger e os 7 golpes mais comuns. Tutorial completo pra brasileiro.</p>
+                                <span class="post-readmore">ler tutorial</span>
+                            </div>
+                        </article>
+
                         <article class="post-card" data-post="roadmap-zero">
                             <div class="post-thumb"><span class="post-thumb-icon">🗺️</span></div>
                             <div class="post-content">
-                                <div class="post-meta"><span class="post-category">Iniciantes</span><span>·</span><span>22/04/2026</span><span>·</span><span style="color:var(--accent);font-weight:600;">NOVO</span></div>
+                                <div class="post-meta"><span class="post-category">Iniciantes</span><span>·</span><span>22/04/2026</span></div>
                                 <h3>Como começar em cripto do zero — Roadmap 2026</h3>
                                 <p>Passo-a-passo completo pra quem nunca tocou em cripto: do CPF na exchange à primeira hardware wallet. 12 etapas, sem enrolação, voltado pro brasileiro.</p>
                                 <span class="post-readmore">ler guia</span>
@@ -3048,6 +3058,175 @@
                         </div>
                     </article>
 
+                    <article class="article-full" id="post-metamask-passo-completo">
+                        <div class="post-meta">
+                            <span class="post-category">Iniciantes</span>
+                            <span>·</span>
+                            <span>22/04/2026</span>
+                            <span>·</span>
+                            <span>13 min de leitura</span>
+                        </div>
+                        <h2>MetaMask passo-a-passo: sua primeira carteira hot wallet (2026)</h2>
+                        <p>Se você seguiu o nosso <a href="#post-roadmap-zero-completo">roadmap de iniciante</a> até a etapa 9, chegou a hora de tirar suas cripto da exchange e ter <strong>controle real do seu dinheiro</strong>. A hot wallet mais usada do mundo é o <strong>MetaMask</strong> — mais de 100 milhões de usuários, suporte nativo a Ethereum e a todas as Layer 2s, e a porta de entrada padrão pra DeFi. Este tutorial cobre instalação, configuração segura, conexão com dApps, integração com Ledger e os <strong>7 golpes mais comuns</strong> que esvaziaram milhares de carteiras brasileiras em 2024-2025.</p>
+
+                        <h3>O que é o MetaMask</h3>
+                        <p>MetaMask é uma <strong>hot wallet</strong> — carteira de software que roda como extensão de navegador (Chrome, Firefox, Brave, Edge) ou app móvel (Android, iOS). "Hot" significa que <strong>está conectada à internet</strong>, ao contrário de hardware wallets como Ledger e Trezor (cold wallets).</p>
+                        <p>Ela faz três coisas:</p>
+                        <ul>
+                            <li><strong>Guarda suas chaves privadas</strong> — criptografadas localmente no seu dispositivo, nunca enviadas pra servidor.</li>
+                            <li><strong>Assina transações</strong> — pra mover ETH, USDC, NFT ou interagir com qualquer contrato Ethereum/L2.</li>
+                            <li><strong>Conecta você a dApps</strong> — Uniswap, Aave, OpenSea, Curve, Pendle, Lido. Sem MetaMask, não há acesso a DeFi.</li>
+                        </ul>
+
+                        <h3>MetaMask vs alternativas (2026)</h3>
+                        <p>O MetaMask domina o mercado, mas não é a única opção. Comparativo rápido:</p>
+                        <ul>
+                            <li><strong>MetaMask:</strong> mais popular, suporte universal a dApps, interface média, taxas de swap interno altas (~0,875%).</li>
+                            <li><strong>Rabby:</strong> open source, criada pelo time da DeBank. Melhor preview de transação ("o que vai acontecer se você assinar"). <strong>Recomendação técnica</strong> pra usuário avançado.</li>
+                            <li><strong>Frame:</strong> desktop-only, foco em segurança e integração com Ledger. Mais nichada.</li>
+                            <li><strong>Trust Wallet:</strong> mobile, da Binance. Boa pra iniciante mobile-first.</li>
+                            <li><strong>Phantom:</strong> originalmente Solana, agora multi-chain. Boa UX, mas ecosystem menos maduro pro usuário Ethereum-first.</li>
+                        </ul>
+                        <p>Pra começar, <strong>MetaMask é a escolha certa</strong>: documentação em português, todos os dApps suportam, e quase todo tutorial do mercado usa MetaMask como referência. Quando dominar, migre pro Rabby se quiser melhor segurança.</p>
+
+                        <h3>Etapa 1 — Instalação (browser ou mobile)</h3>
+                        <p>Use SEMPRE o site oficial. Phishing de MetaMask falso é o golpe #1 do setor — sites como "metamask-app.com" ou "metamask-wallet.io" são fakes que roubam seed phrase no momento da instalação.</p>
+                        <ul>
+                            <li><strong>Site oficial único:</strong> <a href="https://metamask.io/download/" target="_blank" rel="noopener">https://metamask.io/download/</a></li>
+                            <li><strong>Extensão browser:</strong> Chrome Web Store, Firefox Add-ons, Brave Wallet (built-in), Edge Add-ons.</li>
+                            <li><strong>Mobile:</strong> Apple App Store ou Google Play, sempre buscando por "MetaMask" + verificar que o publisher é "ConsenSys Software Inc.".</li>
+                        </ul>
+                        <p>Não baixe APK de site terceiro. Não instale extensão de link enviado por DM. Não confie em anúncio de Google — phishers compram ads pra aparecer acima do MetaMask oficial.</p>
+
+                        <h3>Etapa 2 — Criação da carteira (CRÍTICO)</h3>
+                        <p>Ao abrir MetaMask pela primeira vez, vai aparecer "Create a new wallet" ou "Import existing". Pra começar, escolha <strong>Create</strong>.</p>
+                        <ol>
+                            <li><strong>Crie senha forte</strong> (16+ caracteres, gere no Bitwarden). Essa senha desbloqueia o app no seu dispositivo — não é a "chave" da carteira.</li>
+                            <li><strong>Aceite ver o vídeo de "Secret Recovery Phrase"</strong>. Assista. Realmente.</li>
+                            <li><strong>Anote as 12 palavras EXATAMENTE na ordem mostrada</strong>. Em papel, com caneta. NÃO no Word, NÃO no Notes, NÃO em foto, NÃO no WhatsApp pra você mesmo. Sério.</li>
+                            <li><strong>Confirme as palavras</strong> no fluxo do MetaMask (ele vai pedir pra recolocar na ordem).</li>
+                            <li><strong>Guarde o papel em local seguro</strong>. Idealmente, anote uma segunda cópia em <strong>placa de metal</strong> (Cryptosteel, Billfodl, ~R$ 300) — papel queima e molha, metal sobrevive.</li>
+                        </ol>
+                        <p><strong>Quem tem essas 12 palavras tem TODO o seu cripto, em qualquer dispositivo do mundo.</strong> O suporte oficial da MetaMask NUNCA vai pedir sua seed. Falsos suportes em Discord, Telegram e Twitter são o golpe mais letal — milhares de brasileiros perderam tudo em 2023-2025 entregando seed pra "agente de suporte".</p>
+
+                        <h3>Etapa 3 — Adicionar redes (ETH não é o suficiente)</h3>
+                        <p>Por padrão, MetaMask vem só com Ethereum Mainnet. Em 2026, ninguém faz nada sério em mainnet por causa do gas — você precisa adicionar as <strong>Layer 2s</strong>:</p>
+                        <ul>
+                            <li><strong>Arbitrum One</strong></li>
+                            <li><strong>Optimism</strong></li>
+                            <li><strong>Base</strong></li>
+                            <li><strong>Polygon</strong> (opcional, fora do ecossistema Ethereum-puro)</li>
+                        </ul>
+                        <p>Forma segura de adicionar: vá em <a href="https://chainlist.org/" target="_blank" rel="noopener">chainlist.org</a>, conecte sua MetaMask, busque a rede e clique "Add to MetaMask". Esse site é mantido pela DeFiLlama e usa RPCs verificados.</p>
+                        <p>NUNCA adicione rede via link enviado por DM ou Discord. Existem RPCs maliciosos que registram suas transações ou fingem ser a rede real.</p>
+
+                        <div class="adsense-slot inline">
+                            <div class="adsense-slot-label">[ espaço publicitário ]</div>
+                            <div class="adsense-slot-size">In-article — Responsive</div>
+                        </div>
+
+                        <h3>Etapa 4 — Receber sua primeira cripto</h3>
+                        <p>Cada rede tem o mesmo endereço (0x...) na MetaMask, mas <strong>você precisa enviar pra rede certa</strong>. Se você comprar USDC no Mercado Bitcoin e mandar pra "USDC Ethereum" quando sua MetaMask só tem Arbitrum saldo — perdeu (na verdade fica no endereço, mas você precisa adicionar a rede pra ver).</p>
+                        <p>Fluxo recomendado pro brasileiro:</p>
+                        <ol>
+                            <li>Compre USDC ou ETH na exchange brasileira (Mercado Bitcoin, Foxbit, Bitso).</li>
+                            <li>Saque pra <strong>Arbitrum</strong> (fee mais baixo) ou <strong>Polygon</strong> (fee quase zero, mas menos DeFi).</li>
+                            <li>Confirme o endereço da MetaMask copiando-colando, NUNCA digitando manualmente.</li>
+                            <li>Teste com valor pequeno primeiro — R$ 50 — antes de mover patrimônio.</li>
+                        </ol>
+                        <p>Algumas exchanges (Binance) ainda permitem saque direto pra Base e Optimism. Mercado Bitcoin e Foxbit hoje suportam ETH mainnet, Arbitrum e Polygon principalmente.</p>
+
+                        <h3>Etapa 5 — Conectar a um dApp (exemplo: Uniswap)</h3>
+                        <p>Pra usar DeFi, você precisa "conectar" sua MetaMask ao dApp:</p>
+                        <ol>
+                            <li>Abra <a href="https://app.uniswap.org/" target="_blank" rel="noopener">app.uniswap.org</a> (verifique a URL, sempre).</li>
+                            <li>Clique em "Connect wallet" (canto superior direito).</li>
+                            <li>Escolha "MetaMask".</li>
+                            <li>O MetaMask vai abrir um popup pedindo permissão. Leia o que ele pede.</li>
+                            <li>Aprove. A partir daí, o Uniswap pode "ver" seu endereço e propor transações — mas não pode mover nada sem você assinar cada operação.</li>
+                        </ol>
+                        <p>Quando assinar uma transação (ex.: trocar ETH por USDC), o MetaMask vai mostrar:</p>
+                        <ul>
+                            <li><strong>O que vai acontecer</strong> (ex.: "Send 0.1 ETH, Receive ~250 USDC")</li>
+                            <li><strong>Gas fee estimado</strong> (em ETH ou na moeda nativa da rede)</li>
+                            <li><strong>Endereço do contrato</strong> com quem você está interagindo</li>
+                        </ul>
+                        <p>LEIA antes de aprovar. Se o popup mostrar "Approve unlimited spending of USDC" pra um endereço que você não reconhece — REJEITE. Esse é o vetor #1 dos drainers.</p>
+
+                        <h3>Etapa 6 — Entendendo aprovações (token approvals)</h3>
+                        <p>Quando você usa um dApp pela primeira vez com um token, o MetaMask pede 2 transações:</p>
+                        <ol>
+                            <li><strong>Approve</strong> — você dá permissão pro contrato gastar X quantidade do seu token.</li>
+                            <li><strong>Swap/Deposit</strong> — a operação em si.</li>
+                        </ol>
+                        <p>Por padrão, muitos dApps pedem "infinite approval" (permissão sem limite). Isso significa que se o contrato for explorado depois, o atacante pode drenar TODOS os seus tokens daquele tipo, mesmo meses depois.</p>
+                        <p><strong>Boas práticas:</strong></p>
+                        <ul>
+                            <li>Quando possível, <strong>aprove só o valor exato</strong> da transação atual (alguns dApps permitem editar).</li>
+                            <li>Use <a href="https://revoke.cash/" target="_blank" rel="noopener">revoke.cash</a> mensalmente pra revisar e remover aprovações antigas.</li>
+                            <li>Se for usar dApp de fonte duvidosa, faça primeiro com carteira separada com saldo mínimo.</li>
+                        </ul>
+
+                        <h3>Etapa 7 — Integração com Ledger (modo seguro)</h3>
+                        <p>O melhor dos dois mundos: usar o <strong>MetaMask como interface</strong>, mas a <strong>chave privada fica no Ledger</strong> (hardware wallet). Toda assinatura de transação acontece no dispositivo físico — mesmo se seu PC for invadido, atacante não consegue mover nada.</p>
+                        <ol>
+                            <li>Conecte o Ledger via USB e desbloqueie com PIN.</li>
+                            <li>Abra o app Ethereum no Ledger.</li>
+                            <li>No MetaMask, vá em "Account" → "Connect hardware wallet" → "Ledger".</li>
+                            <li>Selecione a conta a importar (ex.: m/44'/60'/0'/0/0).</li>
+                            <li>Pronto. A partir daí, toda transação vai pedir confirmação física no Ledger.</li>
+                        </ol>
+                        <p>Pra patrimônio acima de R$ 5.000, <strong>essa é a configuração padrão recomendada</strong>. Você usa o MetaMask normalmente, mas quem assina é o hardware. Cobertura completa no <a href="#post-carteira-ledger-completo">artigo do Ledger</a>.</p>
+
+                        <h3>Os 7 golpes mais comuns no MetaMask</h3>
+                        <ol>
+                            <li><strong>Phishing de site falso:</strong> "uniswap-airdrop.com", "metamask-support.io". Sempre confira a URL antes de conectar.</li>
+                            <li><strong>Suporte falso em Discord/Telegram:</strong> ninguém da MetaMask vai te chamar privado pra "ajudar". Quem pede sua seed é golpista, sempre.</li>
+                            <li><strong>Drainer wallet:</strong> dApp aparentemente útil que pede approval malicioso. Saldo zera em segundos. Use só dApps de fontes verificadas.</li>
+                            <li><strong>Address poisoning:</strong> atacante envia 0,001 USDC pra você de um endereço PARECIDO com um endereço que você usa muito. Próxima vez que copia do histórico, copia o errado e perde fundo. Sempre verifique endereço completo.</li>
+                            <li><strong>Token falso (scam token):</strong> aparece um token "USDC" com mesmo símbolo na sua carteira. Tenta vender → script malicioso drena outros tokens. Não interaja com tokens não solicitados.</li>
+                            <li><strong>Permit2 + Uniswap exploit:</strong> assinatura off-chain (sem gas) que parece inofensiva mas dá permissão total. Sempre leia o que está assinando, mesmo "Sign Message" sem custo.</li>
+                            <li><strong>Extensão maliciosa:</strong> extensão de Chrome aparentemente legítima (ex.: "Dark Mode for X") com permissão de leitura de página, lê seu MetaMask. Mantenha extensões no mínimo necessário.</li>
+                        </ol>
+
+                        <h3>Boas práticas avançadas</h3>
+                        <ul>
+                            <li><strong>Múltiplas contas separadas:</strong> use uma conta pra "explorar" (saldo baixo, conecta em qualquer dApp), outra pra "patrimônio" (com Ledger, conecta só em dApps consagrados).</li>
+                            <li><strong>Browser dedicado:</strong> use Brave ou um perfil de Firefox separado só pra cripto. Sem outras extensões, sem login em redes sociais, sem histórico misturado.</li>
+                            <li><strong>Verifique gas estimado:</strong> se uma transação simples está pedindo R$ 200 de gas em Arbitrum, alguma coisa errada está acontecendo. Cancele.</li>
+                            <li><strong>Use simulador Tenderly</strong> em transações grandes: <a href="https://www.tdly.co/" target="_blank" rel="noopener">tdly.co</a> simula a transação antes de você assinar.</li>
+                            <li><strong>Atualize o MetaMask</strong> regularmente — ConsenSys publica patches de segurança frequentes.</li>
+                            <li><strong>Não use MetaMask em PC compartilhado</strong>: o ideal é dispositivo pessoal.</li>
+                        </ul>
+
+                        <blockquote>"O MetaMask é a porta de entrada do Ethereum, mas também o ponto de falha mais comum. 99% das perdas em DeFi não são hack de protocolo — são erro humano na hora de assinar transação." — princípio de segurança operacional cripto.</blockquote>
+
+                        <h3>Conclusão</h3>
+                        <p>MetaMask é a hot wallet padrão do Ethereum em 2026. Instalada e configurada corretamente, é segura e te dá acesso ao maior ecossistema DeFi do mundo. Mal configurada — sem hardware wallet integrada, com seed phrase em foto, conectando em qualquer dApp — é a forma mais rápida de perder cripto.</p>
+                        <p>Pra patrimônio pequeno (<R$ 5.000), MetaMask sozinha resolve. Pra patrimônio sério, integre com Ledger. Em qualquer caso: <strong>seed phrase em metal, 2FA na exchange, RPC oficial via chainlist.org, e nunca digite a seed em lugar nenhum digitalizado</strong>.</p>
+
+                        <h3>Leia também</h3>
+                        <ul>
+                            <li><a href="#post-roadmap-zero-completo">Roadmap 2026: começar em cripto do zero</a></li>
+                            <li><a href="#post-carteira-ledger-completo">Ledger: hardware wallet pra integrar</a></li>
+                            <li><a href="#post-carteira-trezor-completo">Trezor: alternativa open source</a></li>
+                            <li><a href="#post-l2-ethereum-completo">Layer 2: redes pra adicionar no MetaMask</a></li>
+                            <li><a href="#post-seguranca-completo">Segurança cripto: 2FA, phishing, golpes</a></li>
+                        </ul>
+
+                        <h3>Fontes externas</h3>
+                        <ul>
+                            <li><a href="https://metamask.io/download/" target="_blank" rel="noopener">MetaMask — site oficial de download</a></li>
+                            <li><a href="https://support.metamask.io/" target="_blank" rel="noopener">MetaMask Support — base de conhecimento oficial</a></li>
+                            <li><a href="https://chainlist.org/" target="_blank" rel="noopener">Chainlist — RPCs verificados pra adicionar redes</a></li>
+                            <li><a href="https://revoke.cash/" target="_blank" rel="noopener">Revoke.cash — auditoria de aprovações de token</a></li>
+                        </ul>
+
+                        <div class="disclaimer-box">
+                            <strong>⚠ Aviso:</strong> tutorial educacional e independente. Não recebemos pagamento da ConsenSys (criadora do MetaMask). Recursos de segurança e UX podem mudar com novas versões — sempre confira documentação oficial. Hot wallets são inerentemente mais expostas que hardware wallets — pra patrimônio sério, integre com Ledger ou Trezor. Operações DeFi têm risco de smart contract — DYOR.
+                        </div>
+                    </article>
+
                 </div>
 
                 <aside class="sidebar">
@@ -3055,7 +3234,7 @@
                     <div class="widget">
                         <h4>Categorias</h4>
                         <ul>
-                            <li><a href="#blog">Iniciantes <span class="count">3</span></a></li>
+                            <li><a href="#blog">Iniciantes <span class="count">4</span></a></li>
                             <li><a href="#blog">Bitcoin <span class="count">13</span></a></li>
                             <li><a href="#blog">DeFi <span class="count">19</span></a></li>
                             <li><a href="#blog">Ethereum <span class="count">6</span></a></li>
@@ -3090,13 +3269,13 @@
                     <div class="widget">
                         <h4>Posts Populares</h4>
                         <ul>
+                            <li><a href="#post-metamask-passo-completo">🦊 MetaMask passo-a-passo</a></li>
                             <li><a href="#post-roadmap-zero-completo">🗺️ Roadmap 2026: começar do zero</a></li>
                             <li><a href="#post-l2-ethereum-completo">Layer 2: Arbitrum vs Optimism vs Base</a></li>
                             <li><a href="#post-carteira-ledger-completo">Ledger: análise completa</a></li>
                             <li><a href="#post-carteira-trezor-completo">Trezor: 100% open source</a></li>
                             <li><a href="#post-carteira-coldcard-completo">Coldcard: air-gapped bitcoin-only</a></li>
                             <li><a href="#post-dca-completo">DCA: estratégia que supera traders</a></li>
-                            <li><a href="#post-pool-liquidez-completo">Pool de liquidez: 2 dígitos ou armadilha?</a></li>
                             <li><a href="#post-aave-kelp-completo">🚨 Hack Kelp DAO + Aave ($292M)</a></li>
                         </ul>
                     </div>
@@ -3546,6 +3725,7 @@
                 else if (target === 'carteira-coldcard') document.getElementById('post-carteira-coldcard-completo').scrollIntoView({behavior:'smooth'});
                 else if (target === 'l2-ethereum') document.getElementById('post-l2-ethereum-completo').scrollIntoView({behavior:'smooth'});
                 else if (target === 'roadmap-zero') document.getElementById('post-roadmap-zero-completo').scrollIntoView({behavior:'smooth'});
+                else if (target === 'metamask-passo') document.getElementById('post-metamask-passo-completo').scrollIntoView({behavior:'smooth'});
                 else alert('// em breve: artigo completo em produção');
             });
         });
