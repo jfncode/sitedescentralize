@@ -18,7 +18,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Google AdSense — validação de propriedade -->
+    <!-- Google AdSense — validação de propriedade (carregado após consentimento LGPD) -->
+    <script>
+        window.adsenseConfig = {
+            client: 'ca-pub-9518840979833525',
+            loaded: false
+        };
+        // Google Consent Mode v2 — default denied até o usuário aceitar
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+    </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9518840979833525"
          crossorigin="anonymous"></script>
 
@@ -732,9 +748,79 @@
             .menu a { font-size: 0.68rem; padding: 6px 6px; }
             .logo { font-size: 0.78rem; }
         }
+
+        #cookie-banner {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: var(--bg-1);
+            border-top: 2px solid var(--accent);
+            padding: 18px 24px;
+            z-index: 9999;
+            display: none;
+            box-shadow: 0 -6px 24px rgba(0,0,0,0.4);
+        }
+        #cookie-banner.show { display: block; }
+        .cookie-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .cookie-text {
+            flex: 1;
+            min-width: 280px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            line-height: 1.55;
+        }
+        .cookie-text strong { color: var(--text); }
+        .cookie-text a { color: var(--accent); text-decoration: underline; }
+        .cookie-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+        .cookie-btn {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .cookie-btn.accept {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+        }
+        .cookie-btn.accept:hover { background: #ffb84d; }
+        .cookie-btn.reject {
+            background: transparent;
+            color: var(--text-dim);
+        }
+        .cookie-btn.reject:hover { color: var(--text); border-color: var(--text-dim); }
+        @media (max-width: 640px) {
+            #cookie-banner { padding: 14px 16px; }
+            .cookie-text { font-size: 0.78rem; }
+            .cookie-btn { padding: 9px 14px; font-size: 0.75rem; }
+            .cookie-buttons { width: 100%; justify-content: flex-end; }
+        }
     </style>
 </head>
 <body>
+    <div id="cookie-banner" role="dialog" aria-label="Consentimento de cookies">
+        <div class="cookie-inner">
+            <div class="cookie-text">
+                🍪 <strong>Usamos cookies</strong> para melhorar sua experiência, analisar tráfego e exibir anúncios personalizados via Google AdSense. Ao clicar em <strong>"Aceitar"</strong>, você concorda com nossa <a href="#privacidade">política de privacidade</a> e com o uso de cookies conforme a <strong>LGPD</strong>.
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn reject" id="cookie-reject">Rejeitar</button>
+                <button class="cookie-btn accept" id="cookie-accept">Aceitar todos</button>
+            </div>
+        </div>
+    </div>
+
     <canvas id="matrix"></canvas>
 
     <div id="crypto-ticker">
@@ -752,7 +838,9 @@
                 <li><a href="#blog" class="nav-link">Blog</a></li>
                 <li><a href="#ferramentas" class="nav-link">Ferramentas</a></li>
                 <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                <li><a href="#contato" class="nav-link">Contato</a></li>
                 <li><a href="#privacidade" class="nav-link">Privacidade</a></li>
+                <li><a href="#termos" class="nav-link">Termos</a></li>
             </ul>
             <input type="search" class="nav-search" placeholder="// buscar..." id="searchBox">
             <button class="menu-toggle" id="menuToggle">[ &equiv; ]</button>
@@ -2583,6 +2671,92 @@
             </div>
         </section>
 
+        <section id="termos">
+            <div class="section-head">
+                <h2 class="section-title">termos de uso</h2>
+            </div>
+            <div class="article-full">
+                <p>Ao acessar e utilizar o site <strong>descentralize.com.br</strong>, você concorda com os termos descritos abaixo. Se não concordar com qualquer parte, não utilize o site.</p>
+
+                <h3>1. Objeto</h3>
+                <p>O Descentralize é um blog independente de conteúdo educacional sobre finanças descentralizadas (DeFi), Bitcoin, criptomoedas, blockchain, segurança cripto e tributação no Brasil. Todo o material publicado tem caráter <strong>informativo e educacional</strong>.</p>
+
+                <h3>2. Isenção de responsabilidade</h3>
+                <p>O conteúdo do site <strong>não constitui aconselhamento financeiro, jurídico, contábil ou tributário</strong>. Não somos corretora, distribuidora, consultoria de valores mobiliários ou instituição financeira autorizada pela CVM ou pelo Banco Central do Brasil.</p>
+                <p>Antes de tomar qualquer decisão de investimento, consulte um profissional habilitado. Criptoativos são investimentos de <strong>altíssimo risco</strong> e podem resultar na perda total do capital.</p>
+
+                <h3>3. Propriedade intelectual</h3>
+                <p>Todo o conteúdo original (textos, imagens, códigos, análises) é de autoria de Jefferson Tavares e protegido pela <strong>Lei 9.610/98</strong> (Direitos Autorais). A reprodução é permitida apenas com citação da fonte e link para o artigo original.</p>
+                <p>Marcas, logotipos e nomes de terceiros mencionados pertencem aos seus respectivos proprietários.</p>
+
+                <h3>4. Uso permitido</h3>
+                <ul>
+                    <li>Leitura, estudo e compartilhamento do conteúdo para fins pessoais e educacionais.</li>
+                    <li>Citação de trechos com atribuição clara ao autor e link para o artigo.</li>
+                    <li>Uso das ferramentas interativas (calculadora de portfólio, simuladores) para fins informativos.</li>
+                </ul>
+
+                <h3>5. Uso proibido</h3>
+                <ul>
+                    <li>Republicação integral de artigos sem autorização expressa.</li>
+                    <li>Uso do nome, marca ou conteúdo para promover esquemas fraudulentos, pirâmides ou schemes de "enriquecimento rápido".</li>
+                    <li>Tentativas de comprometer a segurança, integridade ou disponibilidade do site (ataques, scraping abusivo, injection).</li>
+                    <li>Uso do conteúdo para treinar modelos de IA comercial sem autorização.</li>
+                </ul>
+
+                <h3>6. Publicidade e links de afiliados</h3>
+                <p>O site exibe anúncios via <strong>Google AdSense</strong> e pode conter links para produtos/serviços de terceiros. Qualquer relação comercial é divulgada de forma transparente. A exibição de um anúncio <strong>não implica endosso</strong> do produto anunciado.</p>
+
+                <h3>7. Links externos</h3>
+                <p>Artigos podem conter links para sites externos (CoinGecko, whitepapers, exchanges, órgãos reguladores). Não temos controle sobre o conteúdo desses sites e não nos responsabilizamos pelo seu conteúdo, políticas de privacidade ou práticas.</p>
+
+                <h3>8. Modificações</h3>
+                <p>Estes termos podem ser atualizados sem aviso prévio. A versão vigente é sempre a publicada nesta página. O uso continuado do site após qualquer alteração constitui aceitação tácita dos novos termos.</p>
+
+                <h3>9. Limitação de responsabilidade</h3>
+                <p>Não nos responsabilizamos por perdas financeiras, danos diretos ou indiretos decorrentes do uso das informações publicadas, de ferramentas do site ou de decisões de investimento tomadas com base no conteúdo.</p>
+
+                <h3>10. Foro</h3>
+                <p>Fica eleito o foro da comarca do domicílio do autor para dirimir eventuais controvérsias, com renúncia a qualquer outro, por mais privilegiado que seja.</p>
+
+                <p style="margin-top: 24px; color: var(--text-dim); font-size: 0.85rem;"><strong>Última atualização:</strong> 21/04/2026</p>
+            </div>
+        </section>
+
+        <section id="contato">
+            <div class="section-head">
+                <h2 class="section-title">contato</h2>
+            </div>
+            <div class="article-full">
+                <p>Dúvidas, sugestões de pauta, correções ou propostas de parceria? Use um dos canais abaixo. Respondemos em até 72h úteis.</p>
+
+                <h3>Email principal</h3>
+                <p><a href="mailto:jfntavares91@gmail.com"><strong>jfntavares91@gmail.com</strong></a></p>
+                <p style="color: var(--text-dim); font-size: 0.9rem;">Para: pauta editorial, erros factuais em artigos, solicitações LGPD (acesso/exclusão de dados), propostas comerciais.</p>
+
+                <h3>Redes sociais</h3>
+                <ul>
+                    <li><strong>X / Twitter:</strong> <a href="https://x.com/jeffw3b" target="_blank" rel="noopener">@jeffw3b</a> — análises diárias, threads de mercado</li>
+                    <li><strong>TikTok:</strong> <a href="https://tiktok.com/@criptoweb3" target="_blank" rel="noopener">@criptoweb3</a> — educação cripto em vídeo curto</li>
+                </ul>
+
+                <h3>Responsável pelo conteúdo</h3>
+                <p><strong>Jefferson Tavares</strong> — editor-chefe e autor único do Descentralize. Membro da comunidade Yield Hackers desde 2021, cursando Blockchain, Criptomoedas e Finanças na Era Digital.</p>
+
+                <h3>Encarregado pelo Tratamento de Dados (DPO — LGPD)</h3>
+                <p>Jefferson Tavares — <a href="mailto:jfntavares91@gmail.com">jfntavares91@gmail.com</a></p>
+                <p style="color: var(--text-dim); font-size: 0.9rem;">Canal oficial para solicitações relacionadas à Lei Geral de Proteção de Dados (Lei 13.709/2018).</p>
+
+                <h3>Não respondemos sobre</h3>
+                <ul>
+                    <li>Recomendações de compra/venda de criptoativos específicos.</li>
+                    <li>Consultoria financeira individualizada.</li>
+                    <li>Suporte técnico de exchanges, carteiras ou plataformas de terceiros.</li>
+                    <li>Pedidos de shilling pago — o blog não aceita parcerias disfarçadas de conteúdo editorial.</li>
+                </ul>
+            </div>
+        </section>
+
     </div>
 
     <footer>
@@ -2608,8 +2782,8 @@
                     <h5>legal</h5>
                     <ul>
                         <li><a href="#privacidade">Privacidade</a></li>
-                        <li><a href="#privacidade">Termos de uso</a></li>
-                        <li><a href="mailto:jfntavares91@gmail.com">Contato</a></li>
+                        <li><a href="#termos">Termos de uso</a></li>
+                        <li><a href="#contato">Contato</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -2815,6 +2989,50 @@
                 c.style.display = (!q || txt.includes(q)) ? '' : 'none';
             });
         });
+
+        (function() {
+            const STORAGE_KEY = 'descentralize_cookie_consent';
+            const banner = document.getElementById('cookie-banner');
+            const saved = localStorage.getItem(STORAGE_KEY);
+
+            function grantConsent() {
+                gtag('consent', 'update', {
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted',
+                    'analytics_storage': 'granted'
+                });
+            }
+
+            function denyConsent() {
+                gtag('consent', 'update', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'analytics_storage': 'denied'
+                });
+            }
+
+            if (saved === 'accepted') {
+                grantConsent();
+            } else if (saved === 'rejected') {
+                denyConsent();
+            } else {
+                setTimeout(() => banner.classList.add('show'), 800);
+            }
+
+            document.getElementById('cookie-accept').addEventListener('click', () => {
+                localStorage.setItem(STORAGE_KEY, 'accepted');
+                grantConsent();
+                banner.classList.remove('show');
+            });
+
+            document.getElementById('cookie-reject').addEventListener('click', () => {
+                localStorage.setItem(STORAGE_KEY, 'rejected');
+                denyConsent();
+                banner.classList.remove('show');
+            });
+        })();
     </script>
 </body>
 </html>
