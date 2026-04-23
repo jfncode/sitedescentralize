@@ -504,6 +504,55 @@
             padding: 2px 8px;
             border-radius: 10px;
         }
+        .widget li a.is-active {
+            color: var(--accent);
+        }
+        .widget li a.is-active .count {
+            background: var(--accent);
+            color: var(--bg-0);
+        }
+
+        .category-filter-bar {
+            display: none;
+            background: var(--bg-1);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 24px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            font-family: var(--mono);
+        }
+        .category-filter-bar.is-active { display: flex; }
+        .category-filter-bar .filter-label {
+            color: var(--text-dim);
+        }
+        .category-filter-bar .filter-tag {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .category-filter-bar .filter-count {
+            color: var(--text-mute);
+            font-size: 0.75rem;
+        }
+        .category-filter-bar .clear-filter {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            transition: all 0.2s;
+        }
+        .category-filter-bar .clear-filter:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
 
         .adsense-slot {
             background: var(--bg-1);
@@ -950,6 +999,15 @@
 
             <div class="blog-layout">
                 <div>
+
+                    <div class="category-filter-bar" id="categoryFilterBar">
+                        <span>
+                            <span class="filter-label">// filtrando por:</span>
+                            <span class="filter-tag" id="filterTag">—</span>
+                            <span class="filter-count" id="filterCount"></span>
+                        </span>
+                        <button type="button" class="clear-filter" id="clearFilterBtn">limpar filtro ×</button>
+                    </div>
 
                     <article class="article-full" id="post-defi-brasil">
                         <div class="post-meta">
@@ -3402,17 +3460,16 @@
 
                     <div class="widget">
                         <h4>Categorias</h4>
-                        <ul>
-                            <li><a href="#blog">Iniciantes <span class="count">5</span></a></li>
-                            <li><a href="#blog">Bitcoin <span class="count">13</span></a></li>
-                            <li><a href="#blog">DeFi <span class="count">19</span></a></li>
-                            <li><a href="#blog">Ethereum <span class="count">6</span></a></li>
-                            <li><a href="#blog">Segurança <span class="count">12</span></a></li>
-                            <li><a href="#blog">Exchanges <span class="count">5</span></a></li>
-                            <li><a href="#blog">Estratégia <span class="count">4</span></a></li>
-                            <li><a href="#blog">Stablecoins <span class="count">6</span></a></li>
-                            <li><a href="#blog">Impostos <span class="count">7</span></a></li>
-                            <li><a href="#blog">Análise Técnica <span class="count">11</span></a></li>
+                        <ul id="categoryList">
+                            <li><a href="#blog" data-category="Iniciantes">Iniciantes <span class="count" data-count-for="Iniciantes">0</span></a></li>
+                            <li><a href="#blog" data-category="Bitcoin">Bitcoin <span class="count" data-count-for="Bitcoin">0</span></a></li>
+                            <li><a href="#blog" data-category="DeFi">DeFi <span class="count" data-count-for="DeFi">0</span></a></li>
+                            <li><a href="#blog" data-category="Ethereum">Ethereum <span class="count" data-count-for="Ethereum">0</span></a></li>
+                            <li><a href="#blog" data-category="Segurança">Segurança <span class="count" data-count-for="Segurança">0</span></a></li>
+                            <li><a href="#blog" data-category="Exchanges">Exchanges <span class="count" data-count-for="Exchanges">0</span></a></li>
+                            <li><a href="#blog" data-category="Estratégia">Estratégia <span class="count" data-count-for="Estratégia">0</span></a></li>
+                            <li><a href="#blog" data-category="Stablecoins">Stablecoins <span class="count" data-count-for="Stablecoins">0</span></a></li>
+                            <li><a href="#blog" data-category="Impostos">Impostos <span class="count" data-count-for="Impostos">0</span></a></li>
                         </ul>
                     </div>
 
@@ -3904,13 +3961,80 @@
             document.getElementById('menu').classList.toggle('open');
         });
 
-        document.getElementById('searchBox').addEventListener('input', function(e) {
-            const q = e.target.value.toLowerCase();
-            document.querySelectorAll('.post-card').forEach(c => {
-                const txt = c.textContent.toLowerCase();
-                c.style.display = (!q || txt.includes(q)) ? '' : 'none';
+        (function() {
+            const searchBox = document.getElementById('searchBox');
+            const cards = Array.from(document.querySelectorAll('.post-card'));
+            const filterBar = document.getElementById('categoryFilterBar');
+            const filterTag = document.getElementById('filterTag');
+            const filterCount = document.getElementById('filterCount');
+            const clearBtn = document.getElementById('clearFilterBtn');
+            const categoryLinks = document.querySelectorAll('#categoryList a[data-category]');
+
+            let activeCategory = null;
+
+            function getCardCategory(card) {
+                const el = card.querySelector('.post-category');
+                return el ? el.textContent.trim() : '';
+            }
+
+            // Conta categorias dinamicamente, esconde li com 0
+            function refreshCounts() {
+                const counts = {};
+                cards.forEach(c => {
+                    const cat = getCardCategory(c);
+                    if (cat) counts[cat] = (counts[cat] || 0) + 1;
+                });
+                document.querySelectorAll('[data-count-for]').forEach(span => {
+                    const cat = span.getAttribute('data-count-for');
+                    const n = counts[cat] || 0;
+                    span.textContent = n;
+                    span.closest('li').style.display = n === 0 ? 'none' : '';
+                });
+            }
+
+            function applyFilter() {
+                const q = (searchBox.value || '').toLowerCase().trim();
+                let visible = 0;
+                cards.forEach(c => {
+                    const matchesCat = !activeCategory || getCardCategory(c) === activeCategory;
+                    const matchesText = !q || c.textContent.toLowerCase().includes(q);
+                    const show = matchesCat && matchesText;
+                    c.style.display = show ? '' : 'none';
+                    if (show) visible++;
+                });
+                if (activeCategory) {
+                    filterBar.classList.add('is-active');
+                    filterTag.textContent = activeCategory;
+                    filterCount.textContent = '(' + visible + ' ' + (visible === 1 ? 'artigo' : 'artigos') + ')';
+                } else {
+                    filterBar.classList.remove('is-active');
+                }
+                document.querySelectorAll('#categoryList a').forEach(a => {
+                    a.classList.toggle('is-active', a.getAttribute('data-category') === activeCategory);
+                });
+            }
+
+            categoryLinks.forEach(a => {
+                a.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const cat = this.getAttribute('data-category');
+                    activeCategory = (activeCategory === cat) ? null : cat;
+                    applyFilter();
+                    document.getElementById('blog').scrollIntoView({behavior: 'smooth'});
+                });
             });
-        });
+
+            clearBtn.addEventListener('click', function() {
+                activeCategory = null;
+                searchBox.value = '';
+                applyFilter();
+            });
+
+            searchBox.addEventListener('input', applyFilter);
+
+            refreshCounts();
+            applyFilter();
+        })();
 
         (function() {
             const STORAGE_KEY = 'descentralize_cookie_consent';
