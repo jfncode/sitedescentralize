@@ -1080,6 +1080,16 @@
                     </article>
 
                     <div class="posts-grid">
+                        <article class="post-card" data-post="ataque-quantico-15bits">
+                            <div class="post-thumb"><span class="post-thumb-icon">⚛️</span></div>
+                            <div class="post-content">
+                                <div class="post-meta"><span class="post-category">Segurança</span><span>·</span><span>25/04/2026</span><span>·</span><span style="color:var(--accent);font-weight:600;">NOVO</span></div>
+                                <h3>Ataque quântico de 15 bits: o Bitcoin está em perigo?</h3>
+                                <p>Pesquisador quebrou uma chave ECC de 15 bits em computador quântico público e ganhou 1 BTC. Bitcoin usa 256 bits — mas a curva está acelerando. Entenda em linguagem simples, sem matemática pesada.</p>
+                                <span class="post-readmore">ler explicação</span>
+                            </div>
+                        </article>
+
                         <article class="post-card" data-post="carteira-ledger">
                             <div class="post-thumb"><span class="post-thumb-icon">🔒</span></div>
                             <div class="post-content">
@@ -3477,6 +3487,137 @@
                         </div>
                     </article>
 
+                    <article class="article-full" id="post-ataque-quantico-15bits-completo">
+                        <div class="post-meta">
+                            <span class="post-category">Segurança</span>
+                            <span>·</span>
+                            <span>25/04/2026</span>
+                            <span>·</span>
+                            <span>12 min de leitura</span>
+                        </div>
+                        <h2>Ataque quântico de 15 bits: o que aconteceu e o que muda para o Bitcoin</h2>
+                        <p>Em 24 de abril de 2026, o pesquisador independente <strong>Giancarlo Lelli</strong> entrou para a história do Bitcoin — e da computação quântica — ao quebrar uma chave criptográfica de <strong>15 bits</strong> usando um computador quântico acessível pela nuvem. Foi o maior ataque quântico já demonstrado publicamente contra a tecnologia que protege o Bitcoin. Lelli ganhou um <strong>prêmio de 1 BTC</strong> (cerca de R$ 500 mil hoje) do Project Eleven, que organiza o chamado <em>Q-Day Prize</em>. A notícia explodiu em todos os portais de cripto e reacendeu uma pergunta antiga: <strong>quanto tempo o Bitcoin tem antes que computadores quânticos possam roubar todas as moedas?</strong></p>
+                        <p>Antes de você entrar em pânico (ou de ignorar como "ficção científica"), respira. Este artigo explica o que aconteceu, em linguagem simples, sem matemática pesada — e mostra exatamente o que isso significa pra quem tem cripto hoje.</p>
+
+                        <h3>O que aconteceu, em uma frase</h3>
+                        <p>Um pesquisador conseguiu, pela primeira vez, usar um computador quântico real (não simulado) para descobrir uma chave privada de criptografia de curva elíptica — o mesmo tipo de criptografia que protege o Bitcoin — mas numa versão minúscula, com apenas 15 bits.</p>
+                        <p>A criptografia que protege o Bitcoin de verdade tem <strong>256 bits</strong>. A diferença entre 15 e 256 bits parece pequena, mas é gigantesca — você vai entender o porquê em alguns parágrafos.</p>
+
+                        <h3>O que é o "Q-Day Prize"</h3>
+                        <p>O <strong>Project Eleven</strong> é uma organização de pesquisa em criptografia pós-quântica que criou um desafio público: quem conseguir provar que computadores quânticos estão ficando perigosos pro Bitcoin recebe prêmios em BTC. O nome "Q-Day" vem de <em>Quantum Day</em> — o dia hipotético em que computadores quânticos serão poderosos o suficiente pra quebrar a criptografia atual.</p>
+                        <p>O prêmio funciona em "andares" de dificuldade. Em setembro de 2025, alguém quebrou uma chave de <strong>6 bits</strong>. Sete meses depois, Lelli quebrou <strong>15 bits</strong>. Ou seja: a capacidade quântica relevante pra cripto multiplicou por <strong>512 vezes em sete meses</strong>. Esse é o número que tirou o sono dos especialistas — não os 15 bits em si.</p>
+
+                        <h3>O que é "criptografia de curva elíptica" (ECC), em linguagem simples</h3>
+                        <p>Bitcoin não usa "senha" no sentido tradicional. Quando você tem uma carteira (MetaMask, Ledger, Trezor), na verdade você tem dois números matematicamente conectados:</p>
+                        <ul>
+                            <li><strong>Chave privada:</strong> um número enorme, secreto, que funciona como sua senha-mestra. Quem tem ela <em>é</em> dona dos seus bitcoins.</li>
+                            <li><strong>Chave pública:</strong> um número derivado da chave privada por uma operação matemática especial (a tal "curva elíptica"). É essa que vira o seu endereço pra receber cripto.</li>
+                        </ul>
+                        <p>A mágica da criptografia de curva elíptica (ECC) é simples de explicar: <strong>é fácil ir da chave privada pra pública, mas é praticamente impossível voltar</strong>. Como se você pudesse misturar tinta azul com amarela e formar verde — mas, dado o verde pronto, ninguém consegue separar de volta o azul e o amarelo.</p>
+                        <p>É essa irreversibilidade que protege o Bitcoin. Todo mundo conhece o seu endereço (a chave pública). Mas ninguém — nem governos, nem hackers, nem a NSA — consegue calcular sua chave privada a partir dele. <strong>Pelo menos com computadores normais.</strong></p>
+
+                        <h3>Por que computadores quânticos mudam o jogo</h3>
+                        <p>Computadores normais (como o seu, o do banco, o do Google) são "binários": cada bit é 0 ou 1. Pra adivinhar uma chave de 256 bits, eles teriam que testar 2 elevado a 256 combinações — um número tão grande que, mesmo usando todos os computadores do mundo somados, levaria <strong>mais tempo que a idade do universo</strong>. Por isso o Bitcoin é seguro hoje.</p>
+                        <p>Computadores quânticos funcionam diferente. Eles usam <strong>qubits</strong>, que podem ser 0, 1, ou os dois ao mesmo tempo (um fenômeno chamado <em>superposição</em>). Isso permite, em tese, testar muitas combinações simultaneamente. Em 1994, o matemático Peter Shor demonstrou um algoritmo quântico que <strong>quebra ECC em tempo razoável</strong> — desde que o computador quântico seja grande o suficiente.</p>
+                        <p>O detalhe é justamente esse "grande o suficiente". Os computadores quânticos atuais ainda são bebês.</p>
+
+                        <h3>15 bits ≠ 256 bits — a escala exponencial</h3>
+                        <p>Aqui é onde muita manchete se perde. Quebrar uma chave de 15 bits NÃO significa "estamos a 6% de quebrar 256 bits". A relação é <strong>exponencial</strong>, não linear.</p>
+                        <p>Pra dar uma noção concreta:</p>
+                        <ul>
+                            <li><strong>15 bits</strong> = 32.768 combinações possíveis. Computador comum quebra em milissegundos.</li>
+                            <li><strong>32 bits</strong> = 4 bilhões de combinações.</li>
+                            <li><strong>64 bits</strong> = 18 quintilhões.</li>
+                            <li><strong>128 bits</strong> = um número de 39 dígitos.</li>
+                            <li><strong>256 bits</strong> = um número de 78 dígitos. Isso é mais que a quantidade estimada de átomos no universo observável.</li>
+                        </ul>
+                        <p>Pra um computador quântico fazer com 256 bits o que Lelli fez com 15, ele precisa não de "17 vezes mais qubits", mas de <strong>milhares de vezes mais qubits</strong> — e qubits estáveis, sem erros (o que é a parte realmente difícil).</p>
+
+                        <h3>Mas a curva está acelerando — esse é o ponto</h3>
+                        <p>Sete meses atrás, o recorde era 6 bits. Agora é 15 bits. Se a evolução continuar nesse ritmo (cada salto multiplicando por centenas a capacidade), os 256 bits do Bitcoin podem ser ameaçados muito antes do que se estimava. As últimas estimativas técnicas reduziram o número de qubits físicos necessários pra quebrar Bitcoin de "milhões" pra <strong>cerca de 500 mil</strong>.</p>
+                        <p>Pra comparar: o computador quântico mais avançado da Google em 2026 (o Willow 2) tem cerca de 1.000 qubits físicos. Estamos a 500x do alvo. Mas a indústria dobra qubits a cada 18-24 meses.</p>
+
+                        <div class="adsense-slot inline">
+                            <div class="adsense-slot-label">[ espaço publicitário ]</div>
+                            <div class="adsense-slot-size">In-article — Responsive</div>
+                        </div>
+
+                        <h3>Quanto tempo até o "Q-Day"?</h3>
+                        <p>Existem três cenários sendo debatidos por especialistas em 2026:</p>
+                        <ul>
+                            <li><strong>Cenário conservador (consenso atual):</strong> 10 a 15 anos. Maioria de pesquisadores ainda acredita que computadores quânticos capazes de quebrar Bitcoin chegam por volta de <strong>2036-2041</strong>.</li>
+                            <li><strong>Cenário acelerado:</strong> 5 a 8 anos. Se a evolução exponencial continuar (como sugere o salto 6→15 bits), pode acontecer já em <strong>2031-2034</strong>.</li>
+                            <li><strong>Cenário-cisne-negro:</strong> 2 a 4 anos. Algum avanço inesperado em correção de erros quânticos antecipa tudo. Considerado improvável, mas não impossível.</li>
+                        </ul>
+                        <p>O ponto é: ninguém sabe a data exata. Mas todos concordam que a janela está <strong>diminuindo</strong>, não aumentando.</p>
+
+                        <h3>Os 6,9 milhões de Bitcoin vulneráveis</h3>
+                        <p>Aqui vem a parte que pouca gente entende: <strong>nem todo Bitcoin tem o mesmo nível de exposição quântica</strong>. Hoje, cerca de 6,9 milhões de BTC (quase 33% do total emitido) estão em endereços onde a <em>chave pública já é visível</em> on-chain. Isso inclui:</p>
+                        <ul>
+                            <li><strong>Endereços P2PK antigos (Pay-to-Public-Key):</strong> usados nos primeiros anos do Bitcoin, expõem a chave pública diretamente. Aqui mora boa parte dos cerca de 1 milhão de BTC do <strong>Satoshi Nakamoto</strong>.</li>
+                            <li><strong>Endereços que já fizeram transações de saída:</strong> quando você manda Bitcoin de um endereço, a chave pública dele aparece pública na blockchain. Se você reusou esse endereço pra receber depois, está vulnerável.</li>
+                            <li><strong>Endereços com saldos relevantes que reusaram chaves:</strong> exchanges antigas, carteiras institucionais mal gerenciadas.</li>
+                        </ul>
+                        <p>Já os endereços <strong>P2PKH e P2WPKH</strong> (os que começam com <code>1...</code>, <code>3...</code> e <code>bc1...</code> hoje) são <em>parcialmente</em> protegidos: enquanto você nunca gastou daquele endereço, a chave pública não é visível — só um hash dela. Um computador quântico precisaria primeiro reverter o hash (SHA-256, que é resistente a quântica) <em>e depois</em> a curva elíptica. É muito mais difícil.</p>
+                        <p>Resumo: <strong>o que está em risco real são endereços antigos, reusados, e os tesouros do Satoshi</strong>. Carteiras modernas seguindo boas práticas (endereço novo a cada transação) estão muito mais seguras.</p>
+
+                        <h3>BIP-360: a proposta de migração pós-quântica</h3>
+                        <p>A boa notícia é que a comunidade Bitcoin não está parada. Existe uma proposta concreta — o <strong>BIP-360</strong> (Bitcoin Improvement Proposal 360) — que adiciona suporte a criptografia <em>pós-quântica</em>. A ideia é simples: criar um novo tipo de endereço que usa algoritmos resistentes a computadores quânticos (como Lattice-based, Hash-based ou ML-KEM). Usuários poderão migrar voluntariamente seus BTC do endereço antigo pro novo, antes do Q-Day chegar.</p>
+                        <p>Outras blockchains também se movimentam:</p>
+                        <ul>
+                            <li><strong>Ethereum</strong> tem um plano de migração pós-quântica liderado por Vitalik Buterin, com upgrade tentativamente previsto pra "depois do Pectra".</li>
+                            <li><strong>StarkWare</strong> (zk-rollups) já usa STARKs, que são naturalmente resistentes a quântica.</li>
+                            <li><strong>Tron</strong> e <strong>Ripple</strong> anunciaram roadmaps próprios em 2026.</li>
+                        </ul>
+                        <p>O desafio do Bitcoin é específico: por ser descentralizado e conservador em mudanças, qualquer fork precisa de consenso amplo. Migrar o Bitcoin pra pós-quântica vai exigir negociação, debate, e provavelmente anos. Por isso o tempo importa.</p>
+
+                        <h3>O que VOCÊ deve fazer agora (5 ações práticas)</h3>
+                        <p>Pode parecer assustador, mas em 2026 ainda há <strong>tempo de sobra</strong> pra agir. Veja o que recomendamos pra quem tem cripto hoje:</p>
+                        <ol>
+                            <li><strong>Não reuse endereços.</strong> Toda vez que você receber Bitcoin, gere um endereço novo na sua carteira (Ledger, MetaMask etc fazem isso automático no padrão). Isso reduz drasticamente sua exposição quântica.</li>
+                            <li><strong>Mova BTC de endereços antigos pra carteira moderna.</strong> Se você tem Bitcoin numa carteira de 2013, em endereços <code>1...</code> que já fizeram transações, considere migrar pra um <code>bc1...</code> novo (SegWit ou Taproot). Veja nosso <a href="#post-seguranca-completo">guia de segurança</a>.</li>
+                            <li><strong>Acompanhe o BIP-360.</strong> Quando ele virar realidade (estimativa: 2027-2029), você vai querer migrar seus saldos pro novo formato. Isso vai ser o "evento Y2K" do Bitcoin — todo mundo vai ter que se mexer junto.</li>
+                            <li><strong>Use hardware wallet com firmware atualizado.</strong> Ledger, Trezor e Coldcard vão suportar BIP-360 por atualização de firmware. Quem usa hardware wallet hoje vai ter migração tranquila. Veja nosso <a href="#post-carteira-ledger-completo">review do Ledger</a>.</li>
+                            <li><strong>Não venda em pânico.</strong> O Bitcoin não vai virar pó amanhã. A janela de 5-15 anos é tempo de sobra pra a comunidade implementar a migração. Quem se mexe cedo paga menos taxa de pânico depois.</li>
+                        </ol>
+
+                        <h3>O que NÃO se sabe ainda</h3>
+                        <p>Pra fechar com honestidade intelectual, três pontos abertos:</p>
+                        <ul>
+                            <li><strong>Se o crescimento exponencial continua.</strong> Pode haver um "muro físico" (qubits estáveis são MUITO difíceis de fazer escalar). Os 15 bits podem ser o pico por enquanto, ou podem virar 30 bits em 6 meses. Ninguém sabe.</li>
+                            <li><strong>Se "Store Now, Decrypt Later" é real.</strong> Existe uma teoria de que governos já estão coletando blockchain hoje pra decifrar quando o quântico chegar. Se for verdade, transações antigas estão expostas mesmo se a gente não fizer mais nada — só importa o que está GUARDADO pra quando o Q-Day chegar.</li>
+                            <li><strong>Se Satoshi vai mover suas moedas.</strong> Cerca de 1 milhão de BTC (quase 5% do total) está intocado desde 2010. Se o Q-Day se aproximar, esses Bitcoins viram alvo nº 1 — e isso pode mover o mercado de formas imprevisíveis.</li>
+                        </ul>
+
+                        <blockquote>"O ataque quântico de 15 bits não é o fim do Bitcoin — é o aviso de que o cronômetro começou. Quem entender agora se prepara com calma. Quem deixar pra última hora vai correr atrás do prejuízo." — princípio editorial Descentralize.</blockquote>
+
+                        <h3>Conclusão</h3>
+                        <p>O ataque de Lelli não quebra o Bitcoin — quebra <strong>15 bits</strong>, enquanto Bitcoin usa 256. Mas a velocidade da escalada (de 6 pra 15 bits em sete meses) mostra que computadores quânticos estão saindo da ficção científica e entrando na pauta de risco real. A janela é de 5 a 15 anos, dependendo do cenário.</p>
+                        <p>Pro brasileiro com cripto em 2026, a mensagem é direta: <strong>não entre em pânico, mas comece a se mexer</strong>. Use carteiras modernas, não reuse endereços, acompanhe o BIP-360, e considere migrar saldos antigos. Quem trata o tema com frieza nos próximos dois ou três anos sai na frente — quem ignora corre o risco de ser pego desprevenido se o cenário acelerado se confirmar.</p>
+
+                        <h3>Leia também</h3>
+                        <ul>
+                            <li><a href="#post-seguranca-completo">Segurança cripto: o guia completo</a></li>
+                            <li><a href="#post-carteira-ledger-completo">Ledger: análise da hardware wallet</a></li>
+                            <li><a href="#post-halving-completo">Halving 2024: o que mudou no Bitcoin</a></li>
+                            <li><a href="#post-roadmap-zero-completo">Roadmap 2026: começar em cripto do zero</a></li>
+                            <li><a href="#post-aave-kelp-completo">Quando DeFi quebra: caso Kelp+Aave</a></li>
+                        </ul>
+
+                        <h3>Fontes externas</h3>
+                        <ul>
+                            <li><a href="https://www.coindesk.com/tech/2026/04/24/researcher-wins-1-bitcoin-bounty-for-largest-quantum-attack-on-underlying-tech" target="_blank" rel="noopener">CoinDesk — Researcher wins 1 BTC bounty for largest quantum attack</a></li>
+                            <li><a href="https://www.coindesk.com/tech/2026/04/25/clock-is-ticking-for-bitcoin-to-prevent-quantum-threat-as-it-could-drain-6-9-million-btc-including-satoshi-s" target="_blank" rel="noopener">CoinDesk — Clock is ticking for Bitcoin (6.9M BTC at risk)</a></li>
+                            <li><a href="https://cointimes.com.br/ataque-quantico-experimental-rende-premio-de-1-bitcoin-e-reacende-debate-sobre-computadores-quanticos/" target="_blank" rel="noopener">Cointimes — Ataque quântico experimental rende prêmio de 1 BTC</a></li>
+                            <li><a href="https://www.spacemoney.com.br/investimentos/criptomoeda/computador-quantico-quebra-chave-criptografica-15-bits" target="_blank" rel="noopener">SpaceMoney — Computador quântico quebra chave de 15 bits</a></li>
+                            <li><a href="https://github.com/bitcoin/bips/blob/master/bip-0360.mediawiki" target="_blank" rel="noopener">BIP-360 — Pay to Quantum Resistant Hash (proposta oficial)</a></li>
+                        </ul>
+
+                        <div class="disclaimer-box">
+                            <strong>⚠ Aviso:</strong> conteúdo educacional e independente, não constitui recomendação de investimento. As estimativas de prazo para o "Q-Day" são especulativas e variam entre especialistas — ninguém sabe a data exata em que computadores quânticos serão capazes de quebrar criptografia de 256 bits. Cripto envolve riscos elevados de perda total. Antes de qualquer decisão patrimonial, consulte profissional registrado na CVM. DYOR (Do Your Own Research).
+                        </div>
+                    </article>
+
                 </div>
 
                 <aside class="sidebar">
@@ -3983,6 +4124,7 @@
                 else if (target === 'roadmap-zero') document.getElementById('post-roadmap-zero-completo').scrollIntoView({behavior:'smooth'});
                 else if (target === 'metamask-passo') document.getElementById('post-metamask-passo-completo').scrollIntoView({behavior:'smooth'});
                 else if (target === 'o-que-e-defi') document.getElementById('post-o-que-e-defi-completo').scrollIntoView({behavior:'smooth'});
+                else if (target === 'ataque-quantico-15bits') document.getElementById('post-ataque-quantico-15bits-completo').scrollIntoView({behavior:'smooth'});
                 else alert('// em breve: artigo completo em produção');
             });
         });
