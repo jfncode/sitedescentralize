@@ -7,4 +7,4 @@ Allow: /
 User-agent: AdsBot-Google
 Allow: /
 
-Sitemap: https://www.descentralize.com.br/sitemap.xml
+Sitemap: https://descentralize.com.br/sitemap.xml
