@@ -25,6 +25,39 @@ ARTIGOS_DIR = ROOT / "artigos"
 SITE_URL = "https://descentralize.com.br"
 TODAY = date.today().isoformat()
 
+HEADER_NAV_REWRITES = {
+    "#home": "/",
+    "#blog": "/#blog",
+    "#ferramentas": "/#ferramentas",
+    "#sobre": "/sobre.html",
+    "#contato": "/contato.html",
+    "#privacidade": "/politica-privacidade.html",
+    "#termos": "/termos.html",
+    "#aviso-legal": "/aviso-legal.html",
+}
+
+
+def rewrite_header_links(header_soup):
+    for a in header_soup.find_all("a"):
+        href = a.get("href", "")
+        if href in HEADER_NAV_REWRITES:
+            a["href"] = HEADER_NAV_REWRITES[href]
+    return header_soup
+
+
+def rewrite_internal_article_links(content_soup):
+    """Transform '#post-X-completo' anchors into '/artigos/<slug>.html' URLs."""
+    for a in content_soup.find_all("a"):
+        href = a.get("href", "")
+        if not href.startswith("#post-"):
+            continue
+        anchor_id = href[1:]
+        slug = slug_from_article_id(anchor_id)
+        if slug:
+            a["href"] = f"/artigos/{slug}.html"
+    return content_soup
+
+
 SLUG_OVERRIDES = {
     "post-aave-kelp-completo": "aave-kelp-hack",
     "post-ir-completo": "ir-cripto",
@@ -215,10 +248,21 @@ def main():
     scripts_body = "\n".join(body_scripts)
 
     header_tag = soup.find("header")
-    header = str(header_tag) if header_tag else ""
+    if header_tag:
+        # Clone and rewrite hash-only links to absolute URLs (works from any page)
+        header_clone = BeautifulSoup(str(header_tag), "html.parser")
+        rewrite_header_links(header_clone)
+        header = str(header_clone)
+    else:
+        header = ""
 
     footer_tag = soup.find("footer")
-    footer = str(footer_tag) if footer_tag else ""
+    if footer_tag:
+        footer_clone = BeautifulSoup(str(footer_tag), "html.parser")
+        rewrite_header_links(footer_clone)
+        footer = str(footer_clone)
+    else:
+        footer = ""
 
     ARTIGOS_DIR.mkdir(exist_ok=True)
 
@@ -239,7 +283,9 @@ def main():
         date_iso = extract_date(art)
 
         page_title = f"{title_text} — Descentralize"
-        body = f'<article class="article-full" id="{art_id}">{art.decode_contents()}</article>'
+        art_clone = BeautifulSoup(str(art), "html.parser")
+        rewrite_internal_article_links(art_clone)
+        body = str(art_clone)
 
         page = base_template(
             title=page_title,
@@ -263,7 +309,9 @@ def main():
         if not section:
             print(f"  ! section #{section_id} not found, skipping")
             continue
-        body = f'<section id="{section_id}">{section.decode_contents()}</section>'
+        sec_clone = BeautifulSoup(str(section), "html.parser")
+        rewrite_internal_article_links(sec_clone)
+        body = str(sec_clone)
         page = render_section_template(
             title=page_title,
             description=description,
