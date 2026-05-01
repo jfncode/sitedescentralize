@@ -1142,5 +1142,61 @@
   });
 })();
 </script>
+<script id="crypto-ticker-script">
+(function() {
+  var TRACK = document.getElementById('ticker-track');
+  if (!TRACK) return;
+  var COINS = [
+    {id: 'bitcoin', symbol: 'BTC'},
+    {id: 'ethereum', symbol: 'ETH'},
+    {id: 'solana', symbol: 'SOL'},
+    {id: 'binancecoin', symbol: 'BNB'},
+    {id: 'ripple', symbol: 'XRP'},
+    {id: 'cardano', symbol: 'ADA'},
+    {id: 'dogecoin', symbol: 'DOGE'},
+    {id: 'polkadot', symbol: 'DOT'},
+    {id: 'avalanche-2', symbol: 'AVAX'},
+    {id: 'chainlink', symbol: 'LINK'}
+  ];
+  var URL = 'https://api.coingecko.com/api/v3/simple/price?ids=' +
+            COINS.map(function(c){return c.id;}).join(',') +
+            '&vs_currencies=usd&include_24hr_change=true';
+
+  function fmt(n) {
+    if (n >= 1000) return n.toLocaleString('en-US', {maximumFractionDigits: 0});
+    if (n >= 1) return n.toFixed(2);
+    if (n >= 0.01) return n.toFixed(3);
+    return n.toFixed(5);
+  }
+
+  function render(data) {
+    var html = COINS.map(function(c) {
+      var d = data[c.id];
+      if (!d) return '';
+      var change = d.usd_24h_change || 0;
+      var dirClass = change >= 0 ? 'up' : 'down';
+      var arrow = change >= 0 ? '▲' : '▼';
+      return '<div class="ticker-item">' +
+             '<span class="ticker-symbol">' + c.symbol + '</span> ' +
+             '<span class="ticker-price">$' + fmt(d.usd) + '</span> ' +
+             '<span class="ticker-change ' + dirClass + '">' + arrow + ' ' +
+             Math.abs(change).toFixed(2) + '%</span>' +
+             '</div>';
+    }).join('');
+    // Duplicate for seamless infinite scroll
+    TRACK.innerHTML = html + html;
+  }
+
+  function load() {
+    fetch(URL)
+      .then(function(r) { return r.json(); })
+      .then(render)
+      .catch(function() {});
+  }
+
+  load();
+  setInterval(load, 90000);
+})();
+</script>
 </body>
 </html>
