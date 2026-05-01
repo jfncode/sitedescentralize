@@ -1100,6 +1100,43 @@
   });
 })();
 </script>
+<script id="fear-greed">
+(function() {
+  var valueEl = document.getElementById('fg-inline-value');
+  var sentimentEl = document.getElementById('fg-inline-sentiment');
+  var needleEl = document.getElementById('fg-inline-needle');
+  if (!valueEl || !sentimentEl || !needleEl) return;
+
+  var SENTIMENT_PT = {
+    'Extreme Fear': { label: 'MEDO EXTREMO', color: '#ff2222' },
+    'Fear':         { label: 'MEDO',         color: '#ff6600' },
+    'Neutral':      { label: 'NEUTRO',       color: '#ffaa00' },
+    'Greed':        { label: 'GANÂNCIA',     color: '#88dd44' },
+    'Extreme Greed':{ label: 'GANÂNCIA EXTREMA', color: '#22cc22' }
+  };
+
+  function load() {
+    fetch('https://api.alternative.me/fng/?limit=1')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var d = data.data && data.data[0];
+        if (!d) return;
+        var value = parseInt(d.value, 10);
+        var classification = d.value_classification;
+        var info = SENTIMENT_PT[classification] || { label: classification.toUpperCase(), color: '#ffaa00' };
+        valueEl.textContent = value;
+        sentimentEl.textContent = info.label;
+        sentimentEl.style.color = info.color;
+        var degrees = (value - 50) * 1.8;
+        needleEl.style.transform = 'rotate(' + degrees + 'deg)';
+      })
+      .catch(function() {});
+  }
+
+  load();
+  setInterval(load, 600000);
+})();
+</script>
 <script id="matrix-rain">
 (function() {
   var canvas = document.getElementById('matrix');
