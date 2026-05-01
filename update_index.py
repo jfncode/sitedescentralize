@@ -66,7 +66,16 @@ def main():
 
         wrapped += 1
 
-    # 3. Add JS to make whole card clickable (preserves filter UX)
+    # 3. Remove legacy click handler that uses scrollIntoView (intercepts our /artigos/ links)
+    legacy_removed = 0
+    for script in soup.find_all("script"):
+        if not script.string:
+            continue
+        if "scrollIntoView" in script.string and "post-card" in script.string and "dataset.post" in script.string:
+            script.decompose()
+            legacy_removed += 1
+
+    # 4. Add JS to make whole card clickable (preserves filter UX)
     body = soup.find("body")
     existing = body.find("script", id="card-link-handler")
     if not existing:
@@ -83,6 +92,7 @@ def main():
 })();
 """
         body.append(new_script)
+    print(f"Removed {legacy_removed} legacy scrollIntoView handler(s)")
 
     INDEX.write_text(str(soup), encoding="utf-8")
     print(f"Updated {wrapped} post-cards with /artigos/ links")
