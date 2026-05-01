@@ -114,7 +114,7 @@ def extract_date(article: Tag) -> str:
     return TODAY
 
 
-def base_template(title: str, description: str, canonical_path: str, body_main: str, css: str, scripts_head: str, header: str, footer: str, scripts_body: str) -> str:
+def base_template(title: str, description: str, canonical_path: str, body_main: str, css: str, scripts_head: str, header: str, footer: str, scripts_body: str, body_decorations: str = "") -> str:
     canonical = f"{SITE_URL}/{canonical_path.lstrip('/')}"
     return f"""<!DOCTYPE html>
 <html lang="pt-br">
@@ -162,6 +162,7 @@ def base_template(title: str, description: str, canonical_path: str, body_main: 
     </style>
 </head>
 <body>
+{body_decorations}
 {header}
     <main class="article-page-wrap">
         <div class="breadcrumb"><a href="/">home</a> / <a href="/#blog">blog</a> / <span>{title}</span></div>
@@ -175,7 +176,7 @@ def base_template(title: str, description: str, canonical_path: str, body_main: 
 """
 
 
-def render_section_template(title: str, description: str, canonical_path: str, body_main: str, css: str, scripts_head: str, header: str, footer: str, scripts_body: str) -> str:
+def render_section_template(title: str, description: str, canonical_path: str, body_main: str, css: str, scripts_head: str, header: str, footer: str, scripts_body: str, body_decorations: str = "") -> str:
     canonical = f"{SITE_URL}/{canonical_path.lstrip('/')}"
     return f"""<!DOCTYPE html>
 <html lang="pt-br">
@@ -215,6 +216,7 @@ def render_section_template(title: str, description: str, canonical_path: str, b
     </style>
 </head>
 <body>
+{body_decorations}
 {header}
     <main class="static-page-wrap">
         <div class="breadcrumb"><a href="/">home</a> / <span>{title.split(' — ')[0]}</span></div>
@@ -255,6 +257,15 @@ def main():
         header = str(header_clone)
     else:
         header = ""
+
+    # Body decorations: cookie banner, matrix canvas, crypto ticker (live prices)
+    body_decorations_html = ""
+    for selector_id in ("cookie-banner", "matrix", "crypto-ticker"):
+        el = soup.find(id=selector_id)
+        if el:
+            deco_clone = BeautifulSoup(str(el), "html.parser")
+            rewrite_header_links(deco_clone)  # rewrite #privacidade in cookie banner
+            body_decorations_html += str(deco_clone) + "\n"
 
     footer_tag = soup.find("footer")
     if footer_tag:
@@ -297,6 +308,7 @@ def main():
             header=header,
             footer=footer,
             scripts_body=scripts_body,
+            body_decorations=body_decorations_html,
         )
         out = ARTIGOS_DIR / f"{slug}.html"
         out.write_text(page, encoding="utf-8")
@@ -322,6 +334,7 @@ def main():
             header=header,
             footer=footer,
             scripts_body=scripts_body,
+            body_decorations=body_decorations_html,
         )
         out = ROOT / filename
         out.write_text(page, encoding="utf-8")
