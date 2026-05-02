@@ -1089,6 +1089,45 @@
   });
 })();
 </script>
+<script id="newsletter-handler">
+(function() {
+  var form = document.getElementById('newsletterForm');
+  var success = document.getElementById('newsletterSuccess');
+  if (!form) return;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    var originalText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'enviando...';
+
+    var data = Object.fromEntries(new FormData(form).entries());
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(function(r) { return r.json(); })
+      .then(function(res) {
+        if (res && res.success) {
+          form.style.display = 'none';
+          if (success) success.hidden = false;
+        } else {
+          btn.textContent = originalText;
+          btn.disabled = false;
+          alert('Não consegui inscrever — tenta de novo em alguns segundos.');
+        }
+      })
+      .catch(function() {
+        btn.textContent = originalText;
+        btn.disabled = false;
+        alert('Erro de conexão. Verifica internet e tenta de novo.');
+      });
+  });
+})();
+</script>
 <script id="portfolio-analyzer">
 function analyzePortfolio() {
   var coinInput = document.getElementById('coinInput');
