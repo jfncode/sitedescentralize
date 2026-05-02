@@ -1208,6 +1208,74 @@
   });
 })();
 </script>
+<script id="portfolio-analyzer">
+function analyzePortfolio() {
+  var coinInput = document.getElementById('coinInput');
+  var amountInput = document.getElementById('amountInput');
+  var priceInput = document.getElementById('priceInput');
+  var result = document.getElementById('portfolioResult');
+  if (!coinInput || !result) return;
+
+  var coin = coinInput.value.trim().toLowerCase().replace(/\s+/g, '-');
+  var amount = parseFloat(amountInput.value);
+  var buyPrice = parseFloat(priceInput.value);
+
+  if (!coin || !(amount > 0) || !(buyPrice > 0)) {
+    result.innerHTML = '<div class="tool-result" style="color:#ff6600;">// preenche os 3 campos com valores válidos</div>';
+    return;
+  }
+  result.innerHTML = '<div class="tool-result">// consultando preço...</div>';
+
+  fetch('https://api.coingecko.com/api/v3/simple/price?ids=' + encodeURIComponent(coin) + '&vs_currencies=usd')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var d = data[coin];
+      if (!d || typeof d.usd !== 'number') {
+        result.innerHTML = '<div class="tool-result" style="color:#ff2222;">// moeda "' + coin + '" não encontrada na CoinGecko. Use o id (ex: bitcoin, ethereum, solana, ripple, cardano)</div>';
+        return;
+      }
+      var nowPrice = d.usd;
+      var invested = amount * buyPrice;
+      var current = amount * nowPrice;
+      var gain = current - invested;
+      var pct = (gain / invested) * 100;
+      var color = gain >= 0 ? '#22cc22' : '#ff2222';
+      var arrow = gain >= 0 ? '▲' : '▼';
+      var fmt = function(n) { return n.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2}); };
+      result.innerHTML =
+        '<div class="tool-result" style="font-family:monospace;line-height:1.7;">' +
+        '<div>// preço atual: <strong>$' + fmt(nowPrice) + '</strong></div>' +
+        '<div>// investido: $' + fmt(invested) + '</div>' +
+        '<div>// valor atual: $' + fmt(current) + '</div>' +
+        '<div style="color:' + color + ';font-weight:700;font-size:1.1em;margin-top:8px;">' +
+        arrow + ' ' + (gain >= 0 ? '+' : '') + '$' + fmt(gain) + ' (' + pct.toFixed(2) + '%)</div>' +
+        '</div>';
+    })
+    .catch(function() {
+      result.innerHTML = '<div class="tool-result" style="color:#ff2222;">// erro ao consultar CoinGecko. Tenta de novo em alguns segundos.</div>';
+    });
+}
+</script>
+<script id="impostometro">
+(function() {
+  var el = document.getElementById('impostoValor');
+  if (!el) return;
+  var BASE_ANUAL_BRL = 3500000000;
+  var startOfYear = new Date(new Date().getFullYear(), 0, 1, 0, 0, 0).getTime();
+  var msInYear = 365.25 * 24 * 3600 * 1000;
+  function fmt(n) {
+    return 'R$ ' + Math.floor(n).toLocaleString('pt-BR');
+  }
+  function tick() {
+    var elapsed = Date.now() - startOfYear;
+    var fraction = elapsed / msInYear;
+    var value = BASE_ANUAL_BRL * fraction;
+    el.textContent = fmt(value);
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
 <script id="fear-greed">
 (function() {
   var valueEl = document.getElementById('fg-inline-value');
