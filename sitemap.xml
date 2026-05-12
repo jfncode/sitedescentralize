@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://descentralize.com.br/</loc>
-        <lastmod>2026-05-02</lastmod>
+        <lastmod>2026-05-12</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
@@ -145,32 +145,38 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://descentralize.com.br/artigos/oranjebtc-itau-debentures.html</loc>
+        <lastmod>2026-05-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://descentralize.com.br/sobre.html</loc>
-        <lastmod>2026-05-02</lastmod>
+        <lastmod>2026-05-12</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://descentralize.com.br/politica-privacidade.html</loc>
-        <lastmod>2026-05-02</lastmod>
+        <lastmod>2026-05-12</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://descentralize.com.br/contato.html</loc>
-        <lastmod>2026-05-02</lastmod>
+        <lastmod>2026-05-12</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://descentralize.com.br/termos.html</loc>
-        <lastmod>2026-05-02</lastmod>
+        <lastmod>2026-05-12</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://descentralize.com.br/aviso-legal.html</loc>
-        <lastmod>2026-05-02</lastmod>
+        <lastmod>2026-05-12</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>

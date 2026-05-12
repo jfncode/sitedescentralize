@@ -1089,6 +1089,66 @@
   });
 })();
 </script>
+<script id="category-filter">
+(function() {
+  var grid = document.querySelector('.posts-grid');
+  var list = document.getElementById('categoryList');
+  if (!grid || !list) return;
+
+  var cards = grid.querySelectorAll('article.post-card');
+  var bar = document.getElementById('categoryFilterBar');
+  var tag = document.getElementById('filterTag');
+  var countEl = document.getElementById('filterCount');
+  var clearBtn = document.getElementById('clearFilterBtn');
+
+  var counts = {};
+  cards.forEach(function(card) {
+    var cat = card.querySelector('.post-category');
+    if (!cat) return;
+    var name = cat.textContent.trim();
+    counts[name] = (counts[name] || 0) + 1;
+    card.setAttribute('data-cat', name);
+  });
+
+  list.querySelectorAll('li').forEach(function(li) {
+    var link = li.querySelector('a[data-category]');
+    if (!link) return;
+    var name = link.getAttribute('data-category');
+    var span = li.querySelector('[data-count-for="' + name + '"]');
+    var n = counts[name] || 0;
+    if (span) span.textContent = n;
+    if (n === 0) li.style.display = 'none';
+  });
+
+  function applyFilter(name) {
+    var visible = 0;
+    cards.forEach(function(card) {
+      var match = card.getAttribute('data-cat') === name;
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+    if (bar) bar.classList.add('is-active');
+    if (tag) tag.textContent = name;
+    if (countEl) countEl.textContent = '(' + visible + ' artigo' + (visible === 1 ? '' : 's') + ')';
+  }
+
+  function clearFilter() {
+    cards.forEach(function(card) { card.style.display = ''; });
+    if (bar) bar.classList.remove('is-active');
+  }
+
+  list.addEventListener('click', function(e) {
+    var link = e.target.closest('a[data-category]');
+    if (!link) return;
+    e.preventDefault();
+    applyFilter(link.getAttribute('data-category'));
+    var blog = document.getElementById('blog');
+    if (blog) blog.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  if (clearBtn) clearBtn.addEventListener('click', clearFilter);
+})();
+</script>
 <script id="newsletter-handler">
 (function() {
   var form = document.getElementById('newsletterForm');
