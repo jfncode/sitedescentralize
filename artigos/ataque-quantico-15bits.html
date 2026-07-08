@@ -1277,7 +1277,7 @@ function analyzePortfolio() {
   var result = document.getElementById('portfolioResult');
   if (!coinInput || !result) return;
 
-  var coin = coinInput.value.trim().toLowerCase().replace(/\s+/g, '-');
+  var coin = coinInput.value.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
   var amount = parseFloat(amountInput.value);
   var buyPrice = parseFloat(priceInput.value);
 
