@@ -129,10 +129,12 @@ async function start() {
 
     function tick() {
       if (!running) return;
-      group.rotation.y += 0.0009;
-      group.rotation.x += (targetY - group.rotation.x) * 0.05;
-      group.rotation.z += (targetX - group.rotation.z) * 0.05;
-      renderer.render(scene, camera);
+      try {
+        group.rotation.y += 0.0009;
+        group.rotation.x += (targetY - group.rotation.x) * 0.05;
+        group.rotation.z += (targetX - group.rotation.z) * 0.05;
+        renderer.render(scene, camera);
+      } catch { running = false; return; }
       rafId = requestAnimationFrame(tick);
     }
     rafId = requestAnimationFrame(tick);
