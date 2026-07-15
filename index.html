@@ -301,6 +301,8 @@
             max-width: 1100px;
             margin: 0 auto;
             position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(255,153,0,0.07), transparent 70%);
         }
         .hero-tag {
             display: inline-block;
@@ -955,6 +957,16 @@
             .cookie-btn { padding: 9px 14px; font-size: 0.75rem; }
             .cookie-buttons { width: 100%; justify-content: flex-end; }
         }
+        /* hero 3D — canvas atrás do conteúdo */
+        #hero3d {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero > :not(#hero3d) { position: relative; z-index: 1; }
     </style>
 </head>
 <body>
@@ -994,6 +1006,7 @@
 </nav>
 </header>
 <section class="hero" id="home">
+<canvas id="hero3d" aria-hidden="true"></canvas>
 <div class="hero-tag">// SAIA DA MATRIX</div>
 <h1>Finanças <span>Descentralizadas</span><br/>sem enrolação.</h1>
 <p class="tagline">decodificando o futuro do dinheiro — Bitcoin, DeFi, stablecoins e segurança cripto em português direto ao ponto.</p>
@@ -4391,5 +4404,7 @@ function analyzePortfolio() {
   load();
   setInterval(load, 90000);
 })();
-</script></body>
+</script>
+<script type="module" src="/assets/hero3d.js"></script>
+</body>
 </html>
