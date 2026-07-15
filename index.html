@@ -967,6 +967,16 @@
             pointer-events: none;
         }
         .hero > :not(#hero3d) { position: relative; z-index: 1; }
+        /* scroll reveal — só com motion permitido */
+        @media (prefers-reduced-motion: no-preference) {
+            .reveal {
+                opacity: 0;
+                transform: translateY(14px);
+                transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                            transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+            .reveal-in { opacity: 1; transform: none; }
+        }
     </style>
 </head>
 <body>
@@ -4406,5 +4416,18 @@ function analyzePortfolio() {
 })();
 </script>
 <script type="module" src="/assets/hero3d.js"></script>
+<script>
+(function () {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
+    var els = document.querySelectorAll('.section-head, .post-card, .tool-card, .widget');
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('reveal-in'); io.unobserve(e.target); }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
+})();
+</script>
 </body>
 </html>
